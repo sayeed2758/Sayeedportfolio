@@ -1828,3 +1828,62 @@ button {
     }
 
 }
+/* =========================
+   JOURNEY MOBILE ALIGNMENT FIX
+   ========================= */
+
+@media (max-width: 600px) {
+
+    .journey {
+        width: 100%;
+        overflow: hidden;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .journey-container {
+        width: calc(100% - 52px);
+        max-width: none;
+
+        margin-left: 26px;
+        margin-right: 26px;
+
+        display: block;
+        box-sizing: border-box;
+    }
+
+    .journey-heading {
+        width: 100%;
+    }
+
+    .journey-heading h2 {
+        width: 100%;
+        max-width: 100%;
+
+        font-size: 45px;
+        line-height: 1;
+
+        letter-spacing: -2.2px;
+
+        word-break: normal;
+    }
+
+    .journey-content {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .experience-number {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .experience-list {
+        width: 100%;
+    }
+
+    .experience-item {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
