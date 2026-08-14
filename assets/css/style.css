@@ -1336,3 +1336,243 @@ button {
         font-size: 27px;
     }
 }
+/* =========================
+   TEACHING FOCUS
+   PHASE 2 — PART 4
+   ========================= */
+
+.teaching-focus {
+    position: relative;
+
+    padding: 130px 0 145px;
+
+    border-top: 1px solid var(--border);
+}
+
+
+.teaching-container {
+    width: min(100% - 48px, var(--container));
+
+    margin: auto;
+}
+
+
+/* TOP */
+
+.teaching-top {
+    display: flex;
+
+    align-items: flex-end;
+    justify-content: space-between;
+
+    margin-bottom: 65px;
+}
+
+
+.teaching-top h2 {
+    margin-top: 20px;
+
+    font-family: var(--heading-font);
+
+    font-size: clamp(50px, 6vw, 78px);
+
+    line-height: 0.95;
+
+    letter-spacing: -3.5px;
+
+    font-weight: 600;
+}
+
+
+.teaching-top h2 span {
+    color: var(--accent);
+}
+
+
+/* SUBJECTS */
+
+.subjects {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+
+.subject {
+    min-height: 210px;
+
+    padding: 28px 25px;
+
+    border-right: 1px solid var(--border);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    transition: 0.3s ease;
+}
+
+
+.subject:last-child {
+    border-right: none;
+}
+
+
+.subject:hover {
+    background: rgba(255, 255, 255, 0.025);
+}
+
+
+.subject span {
+    color: #59635c;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+}
+
+
+.subject h3 {
+    font-family: var(--heading-font);
+
+    font-size: clamp(25px, 2.5vw, 36px);
+
+    letter-spacing: -1.2px;
+
+    font-weight: 500;
+}
+
+
+.subject p {
+    color: #707a73;
+
+    font-size: 10px;
+
+    letter-spacing: 0.8px;
+}
+
+
+/* PRIMARY SUBJECTS */
+
+.subject.primary h3 {
+    color: var(--accent);
+}
+
+
+.subject.primary span {
+    color: var(--accent);
+}
+
+
+.subject.primary p {
+    color: #929c94;
+}
+
+
+/* BOTTOM LINE */
+
+.teaching-line {
+    margin-top: 25px;
+
+    color: #69736c;
+
+    font-size: 11px;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 900px) {
+
+    .teaching-focus {
+        padding: 100px 0 110px;
+    }
+
+
+    .teaching-top {
+        display: block;
+
+        margin-bottom: 45px;
+    }
+
+
+    .subjects {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    .subject:nth-child(2) {
+        border-right: none;
+    }
+
+
+    .subject:nth-child(1),
+    .subject:nth-child(2) {
+        border-bottom: 1px solid var(--border);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .teaching-focus {
+        padding: 85px 0 95px;
+    }
+
+
+    .teaching-container {
+        width: calc(100% - 30px);
+    }
+
+
+    .teaching-top h2 {
+        font-size: 48px;
+
+        letter-spacing: -2.5px;
+    }
+
+
+    .subjects {
+        grid-template-columns: 1fr;
+    }
+
+
+    .subject {
+        min-height: 150px;
+
+        padding: 22px 18px;
+
+        border-right: none;
+
+        border-bottom: 1px solid var(--border);
+    }
+
+
+    .subject:last-child {
+        border-bottom: none;
+    }
+
+
+    .subject:nth-child(2) {
+        border-right: none;
+    }
+
+
+    .subject h3 {
+        font-size: 30px;
+    }
+
+
+    .teaching-line {
+        line-height: 1.6;
+    }
+
+}
