@@ -875,3 +875,104 @@ button {
         background: rgba(168, 230, 61, 0.10);
     }
 }
+/* =========================
+   CSS ONLY MOBILE MENU
+   ========================= */
+
+#menu-check {
+    display: none;
+}
+
+
+@media (max-width: 900px) {
+
+    .menu-toggle {
+        display: flex;
+
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        gap: 5px;
+
+        cursor: pointer;
+    }
+
+
+    .menu-toggle span {
+        display: block;
+
+        width: 18px;
+        height: 2px;
+
+        border-radius: 10px;
+
+        background: var(--text);
+
+        transition: 0.25s ease;
+    }
+
+
+    /* MENU OPEN */
+
+    #menu-check:checked ~ .nav-menu {
+        display: flex !important;
+
+        position: absolute;
+
+        top: 78px;
+        left: 15px;
+        right: 15px;
+
+        flex-direction: column;
+        align-items: stretch;
+
+        gap: 3px;
+
+        padding: 10px;
+
+        background: #101513;
+
+        border: 1px solid rgba(255,255,255,0.12);
+
+        border-radius: 18px;
+
+        box-shadow:
+            0 20px 50px rgba(0,0,0,0.45);
+
+        z-index: 999;
+    }
+
+
+    #menu-check:checked ~ .nav-menu a {
+        display: block;
+
+        width: 100%;
+
+        padding: 14px;
+
+        border-radius: 10px;
+
+        color: var(--text);
+    }
+
+
+    #menu-check:checked ~ .nav-menu a:hover {
+        background: rgba(168,230,61,0.10);
+    }
+
+
+    /* HAMBURGER → X */
+
+    #menu-check:checked + .menu-toggle span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    #menu-check:checked + .menu-toggle span:nth-child(2) {
+        opacity: 0;
+    }
+
+    #menu-check:checked + .menu-toggle span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+}
