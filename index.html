@@ -1,310 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Sayeedportfolio — Sayeedur Rahman</title>
-
-    <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sayeed Portfolio — Teacher, Content Creator and Basic Web Developer.">
+  <meta name="theme-color" content="#0a0712">
+  <title>Sayeed Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+  <div class="cursor-glow" aria-hidden="true"></div>
 
-    <!-- NAVBAR -->
-    <header class="navbar">
-        <div class="nav-container">
-
-    <a href="#home" class="brand">
-        Sayeed<span>portfolio</span>
+  <header class="navbar" id="navbar">
+    <a class="brand" href="#home" aria-label="Sayeed Portfolio home">
+      <img src="assets/logo.png" alt="Sayeed Portfolio logo">
     </a>
 
-    <input type="checkbox" id="menu-check">
-
-    <label for="menu-check" class="menu-toggle" aria-label="Open menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </label>
-
-    <nav class="nav-menu">
-
-        <a href="#home" class="active">Home</a>
-        <a href="#about">About</a>
-        <a href="#teaching">Teaching</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#contact">Contact</a>
-
+    <nav class="nav-links" id="navLinks">
+      <a href="#home" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
     </nav>
 
-    <a href="#contact" class="nav-button">
-        Let's Connect
-    </a>
+    <button class="menu-btn" id="menuBtn" aria-label="Open navigation menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
 
+  <main>
+    <section class="hero section" id="home">
+      <div class="hero-bg orb orb-one"></div>
+      <div class="hero-bg orb orb-two"></div>
+      <div class="hero-content reveal">
+        <p class="eyebrow"><span></span> WELCOME TO MY PORTFOLIO</p>
+        <h1>Hi, I'm <strong>Sayeedur Rahman <em>(Shahid)</em></strong></h1>
+        <h2>Teacher <span>|</span> Content Creator <span>|</span> Web Developer</h2>
+        <p class="hero-tagline">Passionate Teacher &amp; Digital Creator</p>
+        <p class="hero-text">I teach, create digital learning content, and build simple, useful web experiences.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#projects">View My Work <span>↗</span></a>
+          <a class="btn secondary" href="Sayeed-Resume.pdf" download>Download CV <span>↓</span></a>
         </div>
-    </header>
-    <!-- HERO SECTION -->
-
-<main>
-
-    <section class="hero" id="home">
-
-        <div class="hero-container">
-
-            <!-- HERO TEXT -->
-
-            <div class="hero-content">
-
-                <div class="hero-label">
-                    <span></span>
-                    TEACHER • EDUCATOR
-                </div>
-
-                <h1>
-                    Making
-                    <span>Learning</span>
-                    Simple.
-                </h1>
-
-                <p class="hero-name">
-                    Sayeedur Rahman
-                </p>
-
-                <p class="hero-description">
-                    SST & English educator focused on simple concepts,
-                    clear explanations and meaningful learning.
-                </p>
-
-                <div class="hero-actions">
-
-                    <a href="#teaching" class="primary-btn">
-                        Explore My Teaching
-                        <span>→</span>
-                    </a>
-
-                    <a href="#contact" class="secondary-btn">
-                        Let's Connect
-                    </a>
-
-                </div>
-
-                <div class="hero-note">
-                    <span></span>
-                    AI-Assisted Teaching & Content Creation
-                </div>
-
-            </div>
-
-
-            <!-- HERO PHOTO -->
-
-            <div class="hero-visual">
-
-                <div class="image-glow"></div>
-
-                <div class="image-ring">
-
-                    <div class="profile-wrapper">
-
-                        <img
-                            src="assets/images/profile.jpg.png"
-                            alt="Sayeedur Rahman"
-                        >
-
-                    </div>
-
-                </div>
-
-                <div class="floating-tag tag-one">
-                    Learn
-                </div>
-
-                <div class="floating-tag tag-two">
-                    Understand
-                </div>
-
-            </div>
-
+        <div class="social-mini">
+          <a href="https://github.com/sayeed2758" target="_blank" rel="noopener" aria-label="GitHub">GH</a>
+          <a href="https://www.instagram.com/ezee.shahid" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+          <a href="https://wa.me/919124478453" target="_blank" rel="noopener" aria-label="WhatsApp">WA</a>
+          <a href="mailto:creativesayeedd@gmail.com" aria-label="Email">@</a>
         </div>
+      </div>
 
-        <div class="scroll-indicator">
-            SCROLL
+      <div class="hero-photo-wrap reveal delay">
+        <div class="photo-ring"></div>
+        <div class="photo-card">
+          <img src="assets/profile.png" alt="Sayeedur Rahman (Shahid)">
         </div>
-
+        <div class="floating-card card-top"><span>✦</span> Creative</div>
+        <div class="floating-card card-bottom"><span>⌘</span> Digital Creator</div>
+      </div>
+      <div class="scroll-cue">SCROLL <span></span></div>
     </section>
-<!-- =========================
-     ABOUT SECTION
-     PHASE 2 — PART 1
-     ========================= -->
 
-<section class="about" id="about">
+    <section class="section about" id="about">
+      <div class="section-heading reveal">
+        <p class="eyebrow"><span></span> ABOUT ME</p>
+        <h2>Teaching with purpose,<br><span>creating with passion.</span></h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-copy reveal">
+          <p>I'm <strong>Sayeedur Rahman (Shahid)</strong>, a passionate teacher and digital creator focused on making learning simple, engaging and practical.</p>
+          <p>My work combines teaching, educational content creation, basic web development and AI prompting. I enjoy turning ideas into useful digital resources that help students and make everyday work easier.</p>
+          <p>I also build simple websites and tools using technologies such as HTML, GitHub and Firebase.</p>
+          <div class="about-facts">
+            <div><strong>1.5+</strong><span>Years Teaching</span></div>
+            <div><strong>3</strong><span>Featured Projects</span></div>
+            <div><strong>∞</strong><span>Ideas to Create</span></div>
+          </div>
+        </div>
+        <div class="about-panel reveal delay">
+          <div class="panel-line"></div>
+          <p class="panel-label">CURRENT FOCUS</p>
+          <h3>Education × Digital Creativity</h3>
+          <ul>
+            <li><span>01</span> Student-friendly teaching</li>
+            <li><span>02</span> Educational content creation</li>
+            <li><span>03</span> Basic web development</li>
+            <li><span>04</span> AI-assisted learning resources</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-    <div class="about-container">
+    <section class="section skills" id="skills">
+      <div class="section-heading centered reveal">
+        <p class="eyebrow"><span></span> MY SKILLS</p>
+        <h2>What I <span>bring to the table.</span></h2>
+      </div>
+      <div class="skills-grid">
+        <article class="skill-card reveal">
+          <div class="skill-icon">◈</div>
+          <h3>Teaching</h3>
+          <p>Clear, student-friendly teaching with a focus on understanding concepts and classroom engagement.</p>
+          <div class="tags"><span>Education</span><span>Communication</span></div>
+        </article>
+        <article class="skill-card reveal delay">
+          <div class="skill-icon">✦</div>
+          <h3>Content Creation</h3>
+          <p>Creating useful educational and digital content designed to be simple, clear and engaging.</p>
+          <div class="tags"><span>Creative</span><span>Educational</span></div>
+        </article>
+        <article class="skill-card reveal">
+          <div class="skill-icon">⌁</div>
+          <h3>Basic Video Editing</h3>
+          <p>Editing short educational and digital videos with a clean, practical approach.</p>
+          <div class="tags"><span>Editing</span><span>Visuals</span></div>
+        </article>
+        <article class="skill-card reveal delay">
+          <div class="skill-icon">{ }</div>
+          <h3>Basic Web Development</h3>
+          <p>Building simple, responsive web projects using HTML, GitHub and Firebase.</p>
+          <div class="tags"><span>HTML</span><span>GitHub</span><span>Firebase</span></div>
+        </article>
+        <article class="skill-card reveal">
+          <div class="skill-icon">AI</div>
+          <h3>Prompt Mastery</h3>
+          <p>Using structured AI prompts to create, improve and organize digital and educational resources.</p>
+          <div class="tags"><span>AI</span><span>Prompting</span></div>
+        </article>
+      </div>
+    </section>
 
-        <div class="about-heading">
+    <section class="section projects" id="projects">
+      <div class="section-heading reveal">
+        <p class="eyebrow"><span></span> SELECTED WORK</p>
+        <h2>A few things I've <span>built.</span></h2>
+      </div>
+      <div class="projects-list">
+        <article class="project-card reveal">
+          <div class="project-number">01</div>
+          <div class="project-main">
+            <div class="project-meta">WEB PROJECT <span>•</span> CALCULATOR</div>
+            <h3>Sayeed Calculator</h3>
+            <p>A clean, simple calculator web app designed for quick and practical everyday calculations.</p>
+            <div class="project-tags"><span>HTML</span><span>Web UI</span></div>
+            <a href="https://sayeed2758.github.io/Sayeed-Calculator-/" target="_blank" rel="noopener" class="project-link">View Project ↗</a>
+          </div>
+          <div class="project-art calculator-art"><div class="calc-display">123 × 45</div><div class="calc-grid"><i>7</i><i>8</i><i>9</i><i>÷</i><i>4</i><i>5</i><i>6</i><i>×</i><i>1</i><i>2</i><i>3</i><i>+</i></div></div>
+        </article>
 
-            <span class="section-label">
-                ABOUT ME
-            </span>
+        <article class="project-card reverse reveal">
+          <div class="project-number">02</div>
+          <div class="project-main">
+            <div class="project-meta">EDUCATION <span>•</span> FORM SYSTEM</div>
+            <h3>EZEE VISION Form</h3>
+            <p>A digital form experience created for collecting and managing educational information in a simple workflow.</p>
+            <div class="project-tags"><span>HTML</span><span>Firebase</span></div>
+            <a href="https://sayeed2758.github.io/Ezee-Vision-Form/" target="_blank" rel="noopener" class="project-link">View Project ↗</a>
+          </div>
+          <div class="project-art form-art"><div class="mock-form"><b>EZEE VISION</b><span></span><span></span><span></span><button>SUBMIT</button></div></div>
+        </article>
 
-            <h2>
-                Teaching with
-                <span>clarity.</span>
-            </h2>
+        <article class="project-card reveal">
+          <div class="project-number">03</div>
+          <div class="project-main">
+            <div class="project-meta">UTILITY <span>•</span> WEB APP</div>
+            <h3>SayeedPrinter</h3>
+            <p>A practical web utility focused on making printing-related tasks simpler and more convenient.</p>
+            <div class="project-tags"><span>HTML</span><span>Web Tool</span></div>
+            <a href="https://sayeed2758.github.io/Sayeedprinter/" target="_blank" rel="noopener" class="project-link">View Project ↗</a>
+          </div>
+          <div class="project-art printer-art"><div class="printer"><div class="paper"></div><div class="slot"></div></div></div>
+        </article>
+      </div>
+    </section>
 
+    <section class="section contact" id="contact">
+      <div class="contact-grid">
+        <div class="contact-copy reveal">
+          <p class="eyebrow"><span></span> GET IN TOUCH</p>
+          <h2>Have an idea?<br><span>Let's talk.</span></h2>
+          <p>Whether it's about teaching, content creation, a simple website or a digital idea, feel free to reach out.</p>
+          <div class="contact-links">
+            <a href="mailto:creativesayeedd@gmail.com"><span>✉</span> creativesayeedd@gmail.com</a>
+            <a href="https://wa.me/919124478453" target="_blank" rel="noopener"><span>◉</span> WhatsApp</a>
+            <a href="https://www.instagram.com/ezee.shahid" target="_blank" rel="noopener"><span>◎</span> Instagram</a>
+            <a href="https://github.com/sayeed2758" target="_blank" rel="noopener"><span>◈</span> GitHub</a>
+          </div>
         </div>
 
+        <form class="contact-form reveal delay" id="contactForm">
+          <label>Your Name<input id="name" name="name" type="text" placeholder="Enter your name" required></label>
+          <label>Your Email<input id="email" name="email" type="email" placeholder="Enter your email" required></label>
+          <label>Message<textarea id="message" name="message" rows="5" placeholder="Write your message..." required></textarea></label>
+          <button type="submit" class="btn primary full">Send via WhatsApp + Email <span>↗</span></button>
+          <p class="form-note">No backend setup required. The form opens WhatsApp and your email app with the message prepared.</p>
+        </form>
+      </div>
+    </section>
+  </main>
 
-        <div class="about-content">
+  <footer>
+    <div class="footer-brand">SAYEED<span>.</span></div>
+    <p>Made With ❤️ By Sayeedur Rahman (Shahid)</p>
+    <a href="#home">Back to top ↑</a>
+  </footer>
 
-            <p class="about-intro">
-                I'm Sayeedur Rahman — a teacher focused on making
-                difficult concepts simple, clear and easy to understand.
-            </p>
-
-            <p class="about-text">
-                I teach with a simple belief:
-                understanding comes before memorising.
-            </p>
-
-            <div class="about-principle">
-
-                <span>MY PRINCIPLE</span>
-
-                <h3>
-                    “Bane Raho. Behtar Bante Raho.”
-                </h3>
-
-            </div>
-        </section>
-        <!-- =========================
-     TEACHING FOCUS
-     PHASE 2 — PART 3
-     ========================= -->
-
-<section class="teaching-focus" id="teaching">
-
-    <div class="teaching-container">
-
-        <div class="teaching-top">
-
-            <span class="section-label">
-                TEACHING FOCUS
-            </span>
-
-            <h2>
-                What I <span>teach.</span>
-            </h2>
-
-        </div>
-
-
-        <div class="subjects">
-
-            <div class="subject primary">
-                <span>01</span>
-                <h3>SST</h3>
-                <p>Primary Focus</p>
-            </div>
-
-            <div class="subject primary">
-                <span>02</span>
-                <h3>English</h3>
-                <p>Primary Focus</p>
-            </div>
-
-            <div class="subject">
-                <span>03</span>
-                <h3>Science</h3>
-                <p>Upto Class 10</p>
-            </div>
-
-            <div class="subject">
-                <span>04</span>
-                <h3>Mathematics</h3>
-                <p>Upto Class 10</p>
-            </div>
-
-        </div>
-
-
-        <div class="teaching-line">
-            Simple concepts. Clear explanations. Better understanding.
-        </div>
-
-    </div>
-
-</section>
-<!-- =========================
-     TEACHING JOURNEY
-     PHASE 2 — PART 5
-     ========================= -->
-
-<section class="journey" id="journey">
-
-    <div class="journey-container">
-
-        <div class="journey-heading">
-
-            <span class="section-label">
-                TEACHING JOURNEY
-            </span>
-
-            <h2>
-                Learning.
-                <span>Teaching.</span>
-                Growing.
-            </h2>
-
-        </div>
-
-
-        <div class="journey-content">
-
-            <div class="experience-number">
-                <strong>1+</strong>
-                <span>YEAR OF EXPERIENCE</span>
-            </div>
-
-
-            <div class="experience-list">
-
-                <div class="experience-item">
-
-                    <span class="experience-year">
-                        CURRENT
-                    </span>
-
-                    <div>
-                        <h3>ALHERA School</h3>
-                        <p>Teacher</p>
-                    </div>
-
-                </div>
-
-
-                <div class="experience-item">
-
-                    <span class="experience-year">
-                        CURRENT
-                    </span>
-
-                    <div>
-                        <h3>EZEE VISION CHAMPUA</h3>
-                        <p>Teacher • Coaching</p>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-</main>
-<script src="assets/js/script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
