@@ -1,273 +1,726 @@
-<!doctype html>
+<!--
+HOW TO CUSTOMIZE:
+1. Change your profession, name and personal details in CONFIG.
+2. Change the theme colors in CONFIG.theme.
+3. Replace the four showcase media links in CONFIG.showcase.
+4. Add your real work images/videos as entries in CONFIG.works.
+5. Edit tools, skills, services, process steps, plans and FAQs.
+6. Add your profile photo, logo and resume links when ready.
+7. Update social links and contact details in CONFIG.
+-->
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#07050d"><meta name="color-scheme" content="dark">
-  <meta name="description" content="Sayeed Portfolio — Sayeedur Rahman (Shahid), Teacher, Content Creator and Basic Web Developer.">
-  <meta name="robots" content="index,follow">
-  <title>Sayeed Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111114">
+  <meta name="description" content="Sayeedur Rahman (Shahid Sir) — Teacher and Educational Content Creator. Making Learning Simple, Creative & Meaningful.">
+  <title>Shahid Sir | Teacher & Educational Content Creator</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    :root {
+      --accent: #D4A843;
+      --bg: #111114;
+      --card: #1B1B20;
+      --heading: #FFFFFF;
+      --body: #B9B9C2;
+      --border: rgba(255,255,255,.10);
+      --soft: rgba(212,168,67,.10);
+      --font: 'Poppins', sans-serif;
+      --radius: 16px;
+      --container: 1160px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body { font-family: var(--font); background: var(--bg); color: var(--body); line-height: 1.7; overflow-x: hidden; }
+    img, video { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea, select { font: inherit; }
+    button { cursor: pointer; }
+    [hidden] { display: none !important; }
+    .container { width: min(92%, var(--container)); margin: auto; }
+    .section { padding: 90px 0; }
+    .section-title { color: var(--heading); font-size: clamp(27px, 4vw, 38px); line-height: 1.3; font-weight: 700; margin-bottom: 12px; }
+    .section-subtitle { max-width: 650px; font-size: 14px; margin-bottom: 38px; }
+    .accent { color: var(--accent); }
+    .eyebrow { color: var(--accent); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 13px 23px; border-radius: 10px; font-size: 13px; font-weight: 600; border: 1px solid var(--accent); transition: .25s ease; }
+    .btn-primary { color: #17130A; background: var(--accent); }
+    .btn-primary:hover { background: transparent; color: var(--accent); transform: translateY(-3px); }
+    .btn-outline { color: var(--accent); background: transparent; }
+    .btn-outline:hover { background: var(--soft); transform: translateY(-3px); }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); }
+    .navbar { position: sticky; top: 0; z-index: 1000; background: rgba(17,17,20,.96); border-bottom: 1px solid var(--border); backdrop-filter: blur(12px); }
+    .nav-inner { min-height: 76px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+    .logo { color: var(--heading); font-size: 22px; font-weight: 700; white-space: nowrap; }
+    .logo span { color: var(--accent); }
+    .logo img { height: 42px; width: auto; }
+    .nav-links { display: flex; align-items: center; gap: 25px; list-style: none; }
+    .nav-links a { color: var(--body); font-size: 12px; transition: .2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    .nav-right .btn { padding: 10px 17px; }
+    .menu-toggle { display: none; width: 42px; height: 42px; border: 1px solid var(--border); background: var(--card); color: var(--heading); border-radius: 9px; font-size: 18px; }
+    .hero { padding: 85px 0 45px; text-align: center; }
+    .hero-label { display: inline-flex; gap: 9px; align-items: center; color: var(--accent); border: 1px solid rgba(212,168,67,.25); background: var(--soft); padding: 8px 16px; border-radius: 30px; font-size: 11px; margin-bottom: 24px; }
+    .hero h1 { max-width: 900px; margin: auto; color: var(--heading); font-size: clamp(35px, 6vw, 65px); line-height: 1.17; font-weight: 700; letter-spacing: -1.5px; }
+    .hero h1 span { color: var(--accent); }
+    .hero-description { max-width: 720px; margin: 23px auto 28px; font-size: 14px; }
+    .hero-buttons { display: flex; justify-content: center; align-items: center; gap: 13px; }
+    .showcase { padding: 35px 0 75px; }
+    .showcase-grid { display: grid; grid-template-columns: 1.15fr 1fr 1fr; grid-template-rows: 190px 190px; gap: 15px; }
+    .showcase-item { position: relative; overflow: hidden; border-radius: var(--radius); border: 1px solid var(--border); background: linear-gradient(135deg,#29241A,#1B1B20); min-width: 0; }
+    .showcase-item:first-child { grid-row: span 2; }
+    .showcase-item img, .showcase-item video { width: 100%; height: 100%; object-fit: cover; transition: transform .35s ease; }
+    .showcase-item:hover img, .showcase-item:hover video { transform: scale(1.04); }
+    .placeholder { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; height: 100%; background: linear-gradient(145deg,#29241B,#1B1B20); }
+    .placeholder i { font-size: 34px; color: var(--accent); margin-bottom: 15px; }
+    .placeholder strong { color: var(--heading); font-size: 13px; }
+    .placeholder small { font-size: 10px; margin-top: 5px; }
+    .stats { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 30px 0; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+    .stat { text-align: center; }
+    .stat i { color: var(--accent); font-size: 23px; margin-bottom: 8px; }
+    .stat h3 { color: var(--heading); font-size: 25px; }
+    .stat p { font-size: 11px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 30px; }
+    .filter-btn { background: var(--card); color: var(--body); border: 1px solid var(--border); border-radius: 30px; padding: 9px 17px; font-size: 11px; transition: .2s; }
+    .filter-btn:hover, .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #17130A; }
+    .work-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
+    .work-card { overflow: hidden; cursor: pointer; transition: transform .25s ease; }
+    .work-card:hover { transform: translateY(-5px); }
+    .work-media { width: 100%; aspect-ratio: 16/10; background: linear-gradient(135deg,#29241B,#24242B); overflow: hidden; }
+    .work-media img, .work-media video { width: 100%; height: 100%; object-fit: cover; }
+    .work-content { padding: 18px; }
+    .work-category { color: var(--accent); font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+    .work-content h3 { color: var(--heading); font-size: 15px; margin: 7px 0; }
+    .work-content p { font-size: 11px; }
+    .work-content .btn { margin-top: 14px; padding: 9px 13px; font-size: 11px; }
+    .empty-work { padding: 45px 20px; text-align: center; border: 1px dashed var(--border); border-radius: var(--radius); grid-column: 1/-1; }
+    .empty-work i { color: var(--accent); font-size: 30px; margin-bottom: 15px; }
+    .empty-work h3 { color: var(--heading); margin-bottom: 7px; }
+    .load-more { display: block; margin: 32px auto 0; }
+    .about-grid { display: grid; grid-template-columns: .85fr 1.15fr; align-items: center; gap: 55px; }
+    .about-photo { aspect-ratio: 4/5; overflow: hidden; border-radius: var(--radius); border: 1px solid var(--border); background: linear-gradient(145deg,#29241B,#1B1B20); }
+    .about-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .about-photo .placeholder { min-height: 100%; }
+    .about-text p { font-size: 13px; margin-bottom: 15px; }
+    .info-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 23px 0; }
+    .info-item { font-size: 11px; overflow-wrap: anywhere; }
+    .info-item strong { color: var(--heading); display: block; font-size: 12px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 15px; }
+    .chip { background: var(--soft); border: 1px solid rgba(212,168,67,.2); color: var(--accent); padding: 7px 12px; border-radius: 7px; font-size: 10px; }
+    .services-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 18px; }
+    .service-card { padding: 27px; transition: .25s ease; }
+    .service-card:hover { transform: translateY(-4px); border-color: rgba(212,168,67,.45); }
+    .service-icon { width: 49px; height: 49px; border-radius: 12px; display: grid; place-items: center; color: var(--accent); background: var(--soft); font-size: 20px; margin-bottom: 18px; }
+    .service-card h3 { color: var(--heading); font-size: 15px; margin-bottom: 9px; }
+    .service-card p { font-size: 12px; }
+    .process-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+    .process-card { padding: 27px; }
+    .step-number { font-size: 35px; font-weight: 700; color: var(--accent); opacity: .7; }
+    .process-card h3 { color: var(--heading); font-size: 15px; margin: 8px 0; }
+    .process-card p { font-size: 11px; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+    .price-card { padding: 27px; position: relative; }
+    .price-card.popular { border-color: var(--accent); }
+    .popular-label { position: absolute; top: -13px; right: 20px; background: var(--accent); color: #17130A; font-size: 10px; padding: 5px 12px; border-radius: 30px; font-weight: 700; }
+    .price-card h3 { color: var(--heading); font-size: 17px; }
+    .price { color: var(--accent); font-size: 27px; font-weight: 700; margin: 12px 0; }
+    .price-card ul { list-style: none; margin: 20px 0; }
+    .price-card li { font-size: 11px; margin: 12px 0; }
+    .price-card li i { color: var(--accent); margin-right: 8px; }
+    .price-card .btn { width: 100%; }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 18px; }
+    .testimonial { padding: 25px; }
+    .testimonial p { font-size: 12px; }
+    .testimonial h4 { color: var(--heading); margin-top: 18px; font-size: 13px; }
+    .faq-list { max-width: 850px; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-question { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 15px; padding: 21px 5px; border: 0; background: transparent; color: var(--heading); text-align: left; font-size: 13px; font-weight: 500; }
+    .faq-question i { color: var(--accent); transition: transform .25s; }
+    .faq-item.open .faq-question i { transform: rotate(45deg); }
+    .faq-answer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease; }
+    .faq-answer > div { overflow: hidden; }
+    .faq-answer p { padding: 0 5px 18px; font-size: 12px; }
+    .faq-item.open .faq-answer { grid-template-rows: 1fr; }
+    .contact-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 35px; }
+    .contact-info { display: flex; flex-direction: column; gap: 16px; }
+    .contact-item { display: flex; align-items: center; gap: 14px; padding: 16px; }
+    .contact-item i { color: var(--accent); font-size: 19px; width: 25px; text-align: center; }
+    .contact-item small { display: block; font-size: 10px; }
+    .contact-item strong { color: var(--heading); font-size: 12px; word-break: break-word; }
+    .contact-form { padding: 28px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; color: var(--heading); font-size: 11px; margin-bottom: 7px; }
+    .form-control { width: 100%; padding: 12px 13px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; color: var(--heading); outline: none; font-size: 12px; }
+    .form-control:focus { border-color: var(--accent); }
+    textarea.form-control { resize: vertical; min-height: 100px; }
+    .contact-form .btn { width: 100%; }
+    .footer { border-top: 1px solid var(--border); padding: 45px 0 20px; }
+    .footer-main { display: flex; justify-content: space-between; align-items: center; gap: 30px; flex-wrap: wrap; padding-bottom: 28px; }
+    .footer p { font-size: 11px; max-width: 390px; margin-top: 8px; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 18px; }
+    .footer-links a { font-size: 11px; }
+    .social-links { display: flex; gap: 12px; margin-top: 17px; }
+    .social-links a { width: 37px; height: 37px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--border); color: var(--accent); transition: .2s; }
+    .social-links a:hover { background: var(--accent); color: #17130A; }
+    .copyright { border-top: 1px solid var(--border); padding-top: 18px; text-align: center; font-size: 10px; }
+    .lightbox { position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,.94); display: none; align-items: center; justify-content: center; padding: 25px; }
+    .lightbox.show { display: flex; }
+    .lightbox-content { width: min(900px,100%); text-align: center; }
+    .lightbox-content img, .lightbox-content video { max-height: 75vh; width: 100%; object-fit: contain; margin: auto; }
+    .lightbox-content h3 { color: white; margin: 14px 0; }
+    .lightbox-content p { font-size: 12px; }
+    .lightbox-close { position: absolute; top: 20px; right: 25px; color: white; border: none; background: transparent; font-size: 30px; }
+    .lightbox-project { margin-top: 12px; }
+    .popup { position: fixed; inset: 0; z-index: 3000; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,.8); padding: 20px; }
+    .popup.show { display: flex; }
+    .popup-box { background: var(--card); border: 1px solid var(--border); padding: 35px; border-radius: 16px; text-align: center; width: min(400px,100%); }
+    .popup-box i { font-size: 35px; color: var(--accent); margin-bottom: 15px; }
+    .popup-box h3 { color: var(--heading); margin-bottom: 8px; }
+    .popup-box p { font-size: 12px; margin-bottom: 20px; }
+    @media(max-width:900px) {
+      .nav-links { gap: 13px; }
+      .nav-links a { font-size: 10px; }
+      .nav-right .btn { font-size: 10px; }
+      .work-grid { grid-template-columns: repeat(2,1fr); }
+      .pricing-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media(max-width:680px) {
+      .section { padding: 65px 0; }
+      .nav-inner { min-height: 68px; }
+      .menu-toggle { display: block; }
+      .nav-right > .btn { display: none; }
+      .nav-links { position: absolute; left: 0; right: 0; top: 68px; background: var(--bg); border-bottom: 1px solid var(--border); display: none; flex-direction: column; align-items: stretch; padding: 15px 5%; gap: 0; }
+      .nav-links.show { display: flex; }
+      .nav-links a { display: block; padding: 12px 0; font-size: 13px; }
+      .hero { padding-top: 65px; }
+      .hero h1 { letter-spacing: -.7px; }
+      .hero-description { font-size: 12px; }
+      .hero-buttons { gap: 8px; }
+      .hero-buttons .btn { flex: 1; padding: 12px 8px; font-size: 11px; }
+      .showcase-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 230px 135px 135px; gap: 10px; }
+      .showcase-item:first-child { grid-column: 1/-1; grid-row: auto; }
+      .showcase-item:last-child { grid-column: 1/-1; }
+      .stats-grid { grid-template-columns: 1fr 1fr; gap: 25px; }
+      .work-grid { grid-template-columns: 1fr; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 28px; }
+      .about-photo { max-width: 350px; margin: auto; width: 100%; aspect-ratio: 4/3; }
+      .services-grid, .process-grid, .pricing-grid, .testimonials-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      .contact-form { padding: 20px; }
+      .footer-main { flex-direction: column; align-items: flex-start; }
+      .footer-links { gap: 13px; }
+    }
+    @media(max-width:360px) {
+      .hero-buttons .btn { font-size: 10px; padding: 11px 5px; }
+      .logo { font-size: 19px; }
+    }
+  </style>
 </head>
 <body>
-  <div class="page-glow page-glow-a" aria-hidden="true"></div>
-  <div class="page-glow page-glow-b" aria-hidden="true"></div>
-  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+  <script>
+    // CONFIG: All editable website content is stored here.
+    const CONFIG = {
+      // Your profession
+      profession: "Teacher & Educational Content Creator",
+      // Your full name
+      name: "Sayeedur Rahman",
+      // Your professional display name
+      displayName: "Shahid Sir",
+      // Your coaching / professional brand
+      brand: "EZEE VISION CHAMPUA",
+      // Your tagline
+      tagline: "Making Learning Simple, Creative & Meaningful.",
+      // Website language
+      language: "English",
+      // Browser tab title
+      tabTitle: "Shahid Sir | Teacher & Educational Content Creator",
+      // Your email address
+      email: "creativesayeedd@gmail.com",
+      // Your phone number
+      phone: "+919124478453",
+      // WhatsApp contact link
+      whatsapp: "https://wa.me/919124478453",
+      // Your location
+      location: "Champua, Odisha, India",
+      // Profile photo URL (replace none when ready)
+      profilePhoto: "none",
+      // Logo URL (replace none when ready)
+      logo: "none",
+      // Favicon URL (replace none when ready)
+      favicon: "none",
+      // Resume URL (replace none when ready)
+      resume: "none",
+      // Teaching experience
+      experience: "2 Years",
+      // Qualifications
+      qualifications: ["MA in Islamic History", "D.El.Ed.", "CTET Paper I Qualified", "OTET Paper I Qualified", "Graduation (In Progress)"],
+      // Subjects taught
+      subjects: ["Social Science", "English", "Science", "Mathematics"],
+      // Classes taught
+      classes: "Classes 4–10",
+      // Theme colors and font
+      theme: { mode: "dark", accent: "#D4A843", background: "#111114", card: "#1B1B20", heading: "#FFFFFF", body: "#B9B9C2", font: "Poppins" },
+      // Main hero heading
+      heroHeading: "Inspiring Minds Through Teaching & Creative Learning",
+      // Hero introduction
+      heroText: "I am Sayeedur Rahman (Shahid Sir), a passionate teacher and educational content creator. I create engaging learning experiences, educational resources, digital worksheets and interactive study materials to make education simple and meaningful.",
+      // First hero button
+      heroButton1: { text: "Hire Me !!", link: "#contact" },
+      // Second hero button
+      heroButton2: { text: "Explore My Work", link: "#work" },
+      // Navbar call-to-action button
+      navbarButton: { text: "Hire Me", link: "#contact" },
+      // Exactly four showcase tiles; replace media none with image/video URLs
+      showcase: [
+        { title: "Educational Notes & Worksheets", type: "image", media: "none", icon: "fa-book-open" },
+        { title: "Educational PPT & Presentations", type: "image", media: "none", icon: "fa-file-powerpoint" },
+        { title: "Teaching & Content Creation", type: "image", media: "none", icon: "fa-chalkboard-user" },
+        { title: "Professional Introduction", type: "image", media: "none", icon: "fa-user-tie" }
+      ],
+      // Add real statistics later; leave disabled until then
+      stats: { enabled: false, items: [] },
+      // Work gallery filters
+      categories: ["Educational Notes & Worksheets", "Educational PPT & Presentations", "Teaching & Content Creation"],
+      // Add each real project as one object in this array
+      works: [],
+      // About section heading
+      aboutHeading: "About Me",
+      // About section paragraphs
+      aboutText: [
+        "I am Sayeedur Rahman, professionally known as Shahid Sir. I am a teacher and educational content creator with a passion for making learning simple, creative and meaningful.",
+        "My work focuses on teaching Social Science, English, Science and Mathematics, along with creating educational notes, worksheets, practice papers and classroom presentations.",
+        "Through EZEE VISION CHAMPUA, I aim to support students with engaging teaching methods, useful learning resources and meaningful educational experiences."
+      ],
+      // Professional tools
+      tools: ["PowerPoint", "ChatGPT", "AI Tools", "CapCut"],
+      // Professional skills
+      skills: ["Teaching & Explanation", "Educational Content Creation", "Worksheet & Notes Design", "Presentation Design", "Video Content Creation"],
+      // Services offered
+      services: [
+        { icon: "fa-book-open", title: "Educational Content Creation", description: "Creating useful educational notes, worksheets, daily practice papers and study materials for students." },
+        { icon: "fa-file-powerpoint", title: "PowerPoint Presentations", description: "Designing clear, engaging and visually organised educational presentations based on learning topics." },
+        { icon: "fa-video", title: "Educational Video Creation", description: "Creating educational video lessons and learning content to make difficult topics easier to understand." },
+        { icon: "fa-chalkboard-user", title: "Teaching at EZEE VISION CHAMPUA", description: "Supporting students through classroom teaching, subject explanations and structured learning activities." }
+      ],
+      // Three steps in your work process
+      steps: [
+        { number: "01", title: "Understand Requirements", description: "First, I understand the learning goals, subject, topic and requirements." },
+        { number: "02", title: "Create Educational Content", description: "I prepare organised, engaging and easy-to-understand educational materials." },
+        { number: "03", title: "Review & Deliver", description: "I review the work carefully and deliver the final educational content." }
+      ],
+      // Pricing section heading
+      pricingHeading: "Free Learning Resources & Paid Services",
+      // Three pricing / service cards
+      plans: [
+        { name: "Free Learning", price: "FREE", popular: false, features: ["Selected free educational resources", "Learning support materials", "Educational content access", "Student-focused resources"], button: "Explore Resources", link: "#work" },
+        { name: "Custom Content", price: "Contact Me", popular: true, features: ["Custom worksheets", "Educational notes", "Practice papers", "Personalised content requirements"], button: "Get Started", link: "#contact" },
+        { name: "Creative Learning", price: "Contact Me", popular: false, features: ["Educational presentations", "Video lesson creation", "Visual learning content", "Project-based discussion"], button: "Contact Me", link: "#contact" }
+      ],
+      // Add genuine testimonials here later
+      testimonials: [],
+      // Frequently asked questions
+      faqs: [
+        { question: "What subjects do you teach?", answer: "I teach Social Science, English, Science and Mathematics for students in Classes 4–10." },
+        { question: "How can I access free educational resources?", answer: "You can explore the available educational resources through the Work section and contact me for further information." },
+        { question: "Do you create custom worksheets and presentations?", answer: "Yes. I create educational worksheets, practice papers, notes and PowerPoint presentations based on the required topic and learning objectives." },
+        { question: "How can I contact you for paid services?", answer: "You can contact me through the enquiry form, WhatsApp or email to discuss your requirements and pricing." }
+      ],
+      // Contact form heading
+      formTitle: "Let's Work Together",
+      // Contact form description
+      formText: "Have a question or need educational content? Send me your details and requirements.",
+      // Contact form fields
+      formFields: ["Full Name", "WhatsApp Number", "Email Address", "Address"],
+      // Contact form dropdown choices
+      formOptions: ["Educational Content", "PowerPoint Presentation", "Educational Video", "Teaching at EZEE VISION CHAMPUA", "Other"],
+      // Form method: mailto opens the visitor's email application
+      formMethod: "mailto",
+      // Form submit button label
+      formButton: "Send Enquiry",
+      // Confirmation popup text
+      popupTitle: "Thank You!",
+      popupMessage: "Your email application will open with your enquiry details. Please send the email to complete your enquiry.",
+      // Social media URLs; use none to hide an icon
+      social: {
+        instagram: "https://www.instagram.com/ezee.shahid?mdxt=MXZ4bHhtZ3dsc2x3bQ==",
+        youtube: "https://youtube.com/@cbseboardmentor?si=gQGQhqWBOEFnEB2g",
+        facebook: "none",
+        linkedin: "none",
+        twitter: "none",
+        pinterest: "none",
+        behance: "none",
+        dribbble: "none"
+      }
+    };
 
-  <header class="site-header" id="siteHeader">
-    <div class="container nav-wrap">
-      <a class="brand" href="#home" aria-label="Sayeed Portfolio home">
-        <img src="assets/images/logo.png" alt="Sayeed Portfolio logo">
-      </a>
+    // Apply the selected theme and page title
+    document.documentElement.style.setProperty("--accent", CONFIG.theme.accent);
+    document.documentElement.style.setProperty("--bg", CONFIG.theme.background);
+    document.documentElement.style.setProperty("--card", CONFIG.theme.card);
+    document.documentElement.style.setProperty("--heading", CONFIG.theme.heading);
+    document.documentElement.style.setProperty("--body", CONFIG.theme.body);
+    document.documentElement.style.setProperty("--font", `'${CONFIG.theme.font}', sans-serif`);
+    document.title = CONFIG.tabTitle;
+    if (CONFIG.favicon && CONFIG.favicon !== "none") {
+      const faviconLink = document.createElement("link");
+      faviconLink.rel = "icon";
+      faviconLink.href = CONFIG.favicon;
+      document.head.appendChild(faviconLink);
+    }
+  </script>
 
-      <nav class="nav-links" id="navLinks" aria-label="Primary navigation">
-        <a href="#home" class="nav-link active">Home</a>
-        <a href="#about" class="nav-link">About</a>
-        <a href="#skills" class="nav-link">Skills</a>
-        <a href="#projects" class="nav-link">Projects</a>
-        <a href="#services" class="nav-link">Services</a>
-        <a href="#contact" class="nav-link">Contact</a>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#home" class="logo" id="navLogo">Shahid <span>Sir.</span></a>
+      <nav aria-label="Main navigation">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home">Home</a></li><li><a href="#work">Work</a></li><li><a href="#about">About</a></li><li><a href="#services">Services</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#contact">Contact</a></li>
+        </ul>
       </nav>
-
-      <a class="nav-cta" href="#contact" aria-label="Go to contact section">Let's Connect <span aria-hidden="true">↗</span></a>
-
-      <button class="menu-toggle" id="menuToggle" type="button" tabindex="0"
-              aria-label="Open navigation menu" aria-controls="navLinks" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav-right">
+        <a class="btn btn-primary" id="navButton" href="#contact">Hire Me</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+      </div>
     </div>
   </header>
 
   <main>
-    <section class="hero container" id="home" aria-labelledby="heroTitle">
-      <div class="hero-copy reveal">
-        <div class="kicker"><span class="kicker-dot"></span> PERSONAL PORTFOLIO · 2026</div>
-
-        <h1 id="heroTitle">
-          <span class="hero-muted">I'm</span>
-          <span class="hero-name">Sayeedur Rahman</span>
-          <span class="hero-muted">(Shahid)</span>
-        </h1>
-
-        <p class="hero-role">
-          <strong>Teacher</strong><span>|</span>
-          <strong>Content Creator</strong><span>|</span>
-          <strong>Basic Web Developer</strong>
-        </p>
-
-        <p class="hero-description">
-          Passionate Teacher &amp; Digital Creator. I teach with clarity, create useful educational content,
-          explore AI prompting, and build simple digital experiences that solve real problems.
-        </p>
-
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#projects">Explore My Work <span>↗</span></a>
-          <a class="btn btn-secondary" href="Sayeed-Resume.pdf" download="Sayeedur-Rahman-Shahid-CV.pdf">
-            Download CV <span>↓</span>
-          </a>
-        </div>
-
-        <div class="hero-stats" aria-label="Portfolio highlights">
-          <div class="stat"><strong>1.5+</strong><span>Years Teaching</span></div>
-          <div class="stat"><strong>03</strong><span>Featured Projects</span></div>
-          <div class="stat"><strong>05</strong><span>Core Skills</span></div>
-        </div>
-      </div>
-
-      <div class="hero-visual reveal reveal-delay">
-        <div class="hero-halo" aria-hidden="true"></div>
-        <div class="portrait-frame">
-          <img src="assets/images/profile.png" alt="Portrait of Sayeedur Rahman (Shahid)">
-        </div>
-        <div class="floating-card floating-one"><span>✦</span> Creative Educator</div>
-        <div class="floating-card floating-two"><span>⌘</span> Digital Creator</div>
-        <div class="floating-card floating-three"><span>◉</span> Odisha</div>
-        <a class="vertical-scroll" href="#about" aria-label="Scroll to About section">SCROLL <i></i></a>
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-label"><i class="fa-solid fa-graduation-cap"></i><span id="professionLabel"></span></div>
+        <h1 id="heroHeading"></h1>
+        <p class="hero-description" id="heroText"></p>
+        <div class="hero-buttons"><a class="btn btn-primary" id="heroButton1" href="#contact"></a><a class="btn btn-outline" id="heroButton2" href="#work"></a></div>
       </div>
     </section>
 
-    <section class="section container" id="about" aria-labelledby="aboutTitle">
-      <div class="section-head reveal">
-        <div>
-          <div class="section-label">01 / ABOUT</div>
-          <h2 id="aboutTitle">Teaching with purpose.<br><span>Creating with passion.</span></h2>
-        </div>
-        <p class="section-note">A teacher-first creator who uses digital tools to make learning, content and everyday workflows more useful.</p>
-      </div>
+    <section class="showcase" aria-label="Featured educational work"><div class="container"><div class="showcase-grid" id="showcaseGrid"></div></div></section>
 
-      <div class="about-grid">
-        <div class="about-copy reveal">
-          <p>I'm <strong>Sayeedur Rahman (Shahid)</strong>, a passionate teacher and digital creator focused on making learning simple, engaging and practical.</p>
-          <p>My work blends <strong>teaching, content creation, basic web development, video editing and AI prompting</strong>. I enjoy transforming ideas into useful educational resources and clean digital experiences.</p>
-          <p>On the web side, I work with <strong>HTML, GitHub and Firebase</strong> to build simple projects that are practical rather than unnecessarily complicated.</p>
+    <section class="stats" id="statsSection" hidden><div class="container"><div class="stats-grid" id="statsGrid"></div></div></section>
 
-          <div class="facts">
-            <div class="fact"><strong>Teacher</strong><span>SST + English Focus</span></div>
-            <div class="fact"><strong>Creator</strong><span>Digital Content</span></div>
-            <div class="fact"><strong>Builder</strong><span>Simple Web Tools</span></div>
-          </div>
-        </div>
-
-        <aside class="focus-card reveal reveal-delay">
-          <div class="mini-title">CURRENT FOCUS</div>
-          <h3>Education × Digital Creativity</h3>
-          <ul class="focus-list">
-            <li><b>01</b><span>Student-friendly teaching</span></li>
-            <li><b>02</b><span>Educational content creation</span></li>
-            <li><b>03</b><span>Practical web projects</span></li>
-            <li><b>04</b><span>AI-assisted learning resources</span></li>
-          </ul>
-        </aside>
+    <section class="section" id="work">
+      <div class="container">
+        <p class="eyebrow">My Portfolio</p><h2 class="section-title">Selected <span class="accent">Work</span></h2>
+        <p class="section-subtitle">A collection of educational materials, presentations and creative teaching content.</p>
+        <div class="filters" id="filters"></div><div class="work-grid" id="workGrid"></div>
+        <button class="btn btn-outline load-more" id="loadMore" hidden>Load More</button>
       </div>
     </section>
 
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee-track">
-        <span>TEACHING <i>✦</i></span><span>CONTENT CREATION <i>✦</i></span>
-        <span>BASIC WEB DEVELOPMENT <i>✦</i></span><span>VIDEO EDITING <i>✦</i></span>
-        <span>AI PROMPTING <i>✦</i></span><span>TEACHING <i>✦</i></span>
-        <span>CONTENT CREATION <i>✦</i></span><span>BASIC WEB DEVELOPMENT <i>✦</i></span>
-        <span>VIDEO EDITING <i>✦</i></span><span>AI PROMPTING <i>✦</i></span>
-      </div>
-    </div>
-
-    <section class="section container" id="skills" aria-labelledby="skillsTitle">
-      <div class="section-head reveal">
-        <div>
-          <div class="section-label">02 / SKILLS</div>
-          <h2 id="skillsTitle">The things I <span>love doing.</span></h2>
-        </div>
-        <p class="section-note">Focused on practical skills I actually use — no inflated tech stack.</p>
-      </div>
-
-      <div class="skills-layout">
-        <div class="skill-intro reveal">
-          <p>My strongest work sits at the intersection of education and digital creativity. I prefer simple systems, clean visuals and tools that are genuinely useful.</p>
-          <div class="skill-pills">
-            <span class="pill hot">Teaching</span><span class="pill hot">Content Creation</span>
-            <span class="pill">Basic Video Editing</span><span class="pill">Prompt Mastery</span>
-            <span class="pill">HTML</span><span class="pill">GitHub</span><span class="pill">Firebase</span>
-          </div>
-        </div>
-
-        <div class="skill-cards">
-          <article class="skill-card reveal"><div class="icon">◈</div><h3>Teaching</h3><p>Clear, concept-focused teaching with a student-friendly approach and strong communication.</p></article>
-          <article class="skill-card reveal reveal-delay"><div class="icon">✦</div><h3>Content Creation</h3><p>Useful educational and digital content designed to be clear, engaging and practical.</p></article>
-          <article class="skill-card reveal"><div class="icon">⌁</div><h3>Basic Video Editing</h3><p>Clean edits for short educational and digital content, with attention to pacing and presentation.</p></article>
-          <article class="skill-card reveal reveal-delay"><div class="icon">{ }</div><h3>Basic Web Development</h3><p>Simple responsive websites and utilities using HTML, GitHub and Firebase.</p></article>
-          <article class="skill-card reveal reveal-delay-2"><div class="icon">AI</div><h3>Prompt Mastery</h3><p>Structured prompting for creating, refining and organizing digital and educational resources.</p></article>
+    <section class="section" id="about">
+      <div class="container about-grid">
+        <div class="about-photo" id="aboutPhoto"></div>
+        <div class="about-text">
+          <p class="eyebrow">Get to Know Me</p><h2 class="section-title" id="aboutHeading"></h2>
+          <div id="aboutDescription"></div><div class="info-list" id="aboutInfo"></div>
+          <h3 style="color:var(--heading);font-size:14px;margin-top:25px;">Tools I Use</h3><div class="chips" id="toolsList"></div>
+          <h3 style="color:var(--heading);font-size:14px;margin-top:25px;">Professional Skills</h3><div class="chips" id="skillsList"></div>
+          <a class="btn btn-outline" id="resumeButton" href="#" style="margin-top:25px;" hidden><i class="fa-solid fa-download"></i> Download Resume</a>
         </div>
       </div>
     </section>
 
-    <section class="section container" id="projects" aria-labelledby="projectsTitle">
-      <div class="section-head reveal">
-        <div>
-          <div class="section-label">03 / SELECTED WORK</div>
-          <h2 id="projectsTitle">Projects built to be <span>useful.</span></h2>
-        </div>
-        <p class="section-note">A few practical projects created around everyday needs and digital workflows.</p>
-      </div>
-
-      <div class="project-list">
-        <article class="project-card reveal">
-          <div class="project-index">01</div>
-          <div class="project-content">
-            <div class="project-meta">WEB PROJECT · CALCULATOR</div>
-            <h3>Sayeed Calculator</h3>
-            <p>A clean and simple calculator web app built for quick, practical everyday calculations.</p>
-            <div class="chips"><span>HTML</span><span>UI</span><span>Utility</span></div>
-            <a class="project-link" href="https://sayeed2758.github.io/Sayeed-Calculator-/" target="_blank" rel="noopener noreferrer">Open Project <span>↗</span></a>
-          </div>
-          <div class="project-preview">
-            <div class="mini-calc"><strong>123 × 45</strong><div class="calc-keys"><i>7</i><i>8</i><i>9</i><i>÷</i><i>4</i><i>5</i><i>6</i><i>×</i><i>1</i><i>2</i><i>3</i><i>+</i></div></div>
-          </div>
-        </article>
-
-        <article class="project-card reveal reveal-delay">
-          <div class="project-index">02</div>
-          <div class="project-content">
-            <div class="project-meta">EDUCATION · FORM SYSTEM</div>
-            <h3>EZEE VISION Form</h3>
-            <p>A digital form experience created for collecting and organizing educational information in a simple workflow.</p>
-            <div class="chips"><span>HTML</span><span>Firebase</span><span>Education</span></div>
-            <a class="project-link" href="https://sayeed2758.github.io/Ezee-Vision-Form/" target="_blank" rel="noopener noreferrer">Open Project <span>↗</span></a>
-          </div>
-          <div class="project-preview">
-            <div class="mini-form"><b>EZEE VISION</b><em></em><em></em><em></em><button type="button" tabindex="-1">SUBMIT</button></div>
-          </div>
-        </article>
-
-        <article class="project-card reveal reveal-delay-2">
-          <div class="project-index">03</div>
-          <div class="project-content">
-            <div class="project-meta">UTILITY · PRINT WORKFLOW</div>
-            <h3>SayeedPrinter</h3>
-            <p>A practical web utility focused on making printing-related tasks simpler and more convenient.</p>
-            <div class="chips"><span>HTML</span><span>Utility</span><span>Web Tool</span></div>
-            <a class="project-link" href="https://sayeed2758.github.io/Sayeedprinter/" target="_blank" rel="noopener noreferrer">Open Project <span>↗</span></a>
-          </div>
-          <div class="project-preview">
-            <div class="mini-browser"><div class="browser-top"><i></i><i></i><i></i></div><div class="browser-body"><strong>SayeedPrinter</strong><em></em><em></em><em class="short"></em><span></span></div></div>
-          </div>
-        </article>
+    <section class="section" id="services">
+      <div class="container"><p class="eyebrow">What I Offer</p><h2 class="section-title">My <span class="accent">Services</span></h2>
+        <p class="section-subtitle">Educational support and creative services designed to make learning more effective.</p><div class="services-grid" id="servicesGrid"></div>
       </div>
     </section>
 
-    <section class="section container" id="services" aria-labelledby="servicesTitle">
-      <div class="section-head reveal">
-        <div>
-          <div class="section-label">04 / WHAT I DO</div>
-          <h2 id="servicesTitle">Turning ideas into <span>useful output.</span></h2>
-        </div>
-        <p class="section-note">My portfolio is not only about code — it is about creating things that help people.</p>
-      </div>
-
-      <div class="services-grid">
-        <article class="service-card reveal"><div class="service-number">01</div><h3>Teaching &amp; Learning</h3><p>Concept-focused teaching, classroom support and student-friendly learning resources.</p></article>
-        <article class="service-card reveal reveal-delay"><div class="service-number">02</div><h3>Digital Content</h3><p>Educational content, visuals and simple digital resources built around clarity and usefulness.</p></article>
-        <article class="service-card reveal reveal-delay-2"><div class="service-number">03</div><h3>Simple Web Projects</h3><p>Practical static websites and lightweight web tools for personal, educational and everyday use.</p></article>
+    <section class="section" id="process">
+      <div class="container"><p class="eyebrow">My Approach</p><h2 class="section-title">How I <span class="accent">Work</span></h2>
+        <p class="section-subtitle">A simple and organised process from understanding your needs to delivering the work.</p><div class="process-grid" id="processGrid"></div>
       </div>
     </section>
 
-    <section class="section container" id="contact" aria-labelledby="contactTitle">
-      <div class="contact-grid">
-        <div class="contact-copy reveal">
-          <div class="section-label">05 / CONTACT</div>
-          <h2 id="contactTitle">Let's make something <span>useful.</span></h2>
-          <p>Have an educational idea, a digital project or simply want to connect? Send me a message and I'll get back to you.</p>
+    <section class="section" id="pricing">
+      <div class="container"><p class="eyebrow">Plans & Services</p><h2 class="section-title" id="pricingHeading"></h2>
+        <p class="section-subtitle">Explore free learning resources and contact me for customised educational services.</p><div class="pricing-grid" id="pricingGrid"></div>
+      </div>
+    </section>
 
-          <div class="contact-links">
-            <a href="mailto:creativesayeedd@gmail.com"><span class="contact-icon">✉</span><span>creativesayeedd@gmail.com</span></a>
-            <a href="https://wa.me/919124478453" target="_blank" rel="noopener noreferrer"><span class="contact-icon">◉</span><span>WhatsApp</span></a>
-            <a href="https://www.instagram.com/ezee.shahid" target="_blank" rel="noopener noreferrer"><span class="contact-icon">◎</span><span>Instagram</span></a>
-            <a href="https://github.com/sayeed2758" target="_blank" rel="noopener noreferrer"><span class="contact-icon">◈</span><span>github.com/sayeed2758</span></a>
-          </div>
+    <section class="section" id="testimonials" hidden>
+      <div class="container"><p class="eyebrow">Feedback</p><h2 class="section-title">Client <span class="accent">Words</span></h2><div class="testimonials-grid" id="testimonialsGrid"></div></div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container"><p class="eyebrow">Need Help?</p><h2 class="section-title">Frequently Asked <span class="accent">Questions</span></h2>
+        <p class="section-subtitle">Some useful answers about my teaching and educational services.</p><div class="faq-list" id="faqList"></div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container"><p class="eyebrow">Get in Touch</p><h2 class="section-title" id="formTitle"></h2><p class="section-subtitle" id="formText"></p>
+        <div class="contact-grid"><div class="contact-info" id="contactInfo"></div>
+          <form class="contact-form card" id="contactForm"><div id="formInputs"></div>
+            <div class="form-group"><label for="serviceSelect">What do you need?</label><select class="form-control" id="serviceSelect" required></select></div>
+            <div class="form-group"><label for="message">Your Message (Optional)</label><textarea class="form-control" id="message" placeholder="Write your requirements here..."></textarea></div>
+            <button type="submit" class="btn btn-primary" id="formSubmit">Send Enquiry <i class="fa-solid fa-arrow-right"></i></button>
+          </form>
         </div>
-
-        <form class="contact-form reveal reveal-delay" id="contactForm" novalidate aria-label="Contact form">
-          <div class="field"><label for="visitorName">Your Name</label><input id="visitorName" name="name" type="text" autocomplete="name" placeholder="Enter your name" required></div>
-          <div class="field"><label for="visitorEmail">Email</label><input id="visitorEmail" name="email" type="email" autocomplete="email" placeholder="Enter your email" required></div>
-          <div class="field"><label for="visitorMessage">Message</label><textarea id="visitorMessage" name="message" rows="6" placeholder="Write your message..." required></textarea></div>
-          <button class="btn btn-primary form-submit" type="submit" aria-label="Send message via WhatsApp">Send via WhatsApp <span>↗</span></button>
-          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
-          <small>Free static-site setup: submitting opens WhatsApp with your message prepared. Email is also available through the email link beside the form.</small>
-        </form>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="container footer-wrap">
-      <div class="footer-brand">SAYEED<span>.</span></div>
-      <p>Made With ❤️ By Sayeedur Rahman (Shahid)</p>
-      <a class="back-top" href="#home">Back to top <span>↑</span></a>
-    </div>
-  </footer>
+  <footer class="footer"><div class="container"><div class="footer-main">
+    <div><a href="#home" class="logo">Shahid <span>Sir.</span></a><p id="footerTagline"></p><div class="social-links" id="socialLinks"></div></div>
+    <div class="footer-links"><a href="#home">Home</a><a href="#work">Work</a><a href="#about">About</a><a href="#services">Services</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a></div>
+  </div><div class="copyright" id="copyright"></div></div></footer>
 
-  <script src="assets/js/script.js" defer></script>
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Project preview">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close preview"><i class="fa-solid fa-xmark"></i></button><div class="lightbox-content" id="lightboxContent"></div>
+  </div>
+  <div class="popup" id="successPopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle"><div class="popup-box">
+    <i class="fa-solid fa-circle-check"></i><h3 id="popupTitle"></h3><p id="popupMessage"></p><button class="btn btn-primary" id="popupClose">Close</button>
+  </div></div>
+
+  <script>
+    // Escape text before inserting user-editable content into HTML.
+    function escapeHTML(value) {
+      return String(value ?? "").replace(/[&<>"']/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" })[char]);
+    }
+    // Treat empty values and the word none as missing.
+    function isAvailable(value) { return value && value !== "none" && String(value).trim() !== ""; }
+    // Apply navigation and hero content.
+    document.getElementById("professionLabel").textContent = CONFIG.profession;
+    const heroWords = escapeHTML(CONFIG.heroHeading).replace("Creative Learning", "<span>Creative Learning</span>");
+    document.getElementById("heroHeading").innerHTML = heroWords;
+    document.getElementById("heroText").textContent = CONFIG.heroText;
+    document.getElementById("heroButton1").textContent = CONFIG.heroButton1.text;
+    document.getElementById("heroButton1").href = CONFIG.heroButton1.link;
+    document.getElementById("heroButton2").textContent = CONFIG.heroButton2.text;
+    document.getElementById("heroButton2").href = CONFIG.heroButton2.link;
+    document.getElementById("navButton").textContent = CONFIG.navbarButton.text;
+    document.getElementById("navButton").href = CONFIG.navbarButton.link;
+    // Use a text logo unless an image logo is supplied.
+    document.getElementById("navLogo").innerHTML = isAvailable(CONFIG.logo)
+      ? `<img src="${escapeHTML(CONFIG.logo)}" alt="${escapeHTML(CONFIG.brand)} logo">`
+      : `${escapeHTML(CONFIG.displayName.replace(/\s+Sir$/i, ""))} <span>Sir.</span>`;
+
+    // Mobile navigation menu.
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+    menuToggle.addEventListener("click", () => {
+      const open = navLinks.classList.toggle("show");
+      menuToggle.innerHTML = open ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+      menuToggle.setAttribute("aria-expanded", String(open));
+    });
+    navLinks.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
+      navLinks.classList.remove("show"); menuToggle.innerHTML = '<i class="fa-solid fa-bars"></i>'; menuToggle.setAttribute("aria-expanded", "false");
+    }));
+
+    // Render the four hero showcase tiles.
+    const showcaseGrid = document.getElementById("showcaseGrid");
+    CONFIG.showcase.slice(0, 4).forEach(item => {
+      const tile = document.createElement("div"); tile.className = "showcase-item";
+      if (isAvailable(item.media)) {
+        tile.innerHTML = item.type === "video"
+          ? `<video src="${escapeHTML(item.media)}" autoplay muted loop playsinline aria-label="${escapeHTML(item.title)}"></video>`
+          : `<img src="${escapeHTML(item.media)}" loading="lazy" alt="${escapeHTML(item.title)}">`;
+      } else {
+        tile.innerHTML = `<div class="placeholder"><i class="fa-solid ${escapeHTML(item.icon)}"></i><strong>${escapeHTML(item.title)}</strong><small>Portfolio showcase</small></div>`;
+      }
+      showcaseGrid.appendChild(tile);
+    });
+
+    // Display statistics only after real numbers have been added.
+    if (CONFIG.stats.enabled && CONFIG.stats.items.length) {
+      document.getElementById("statsSection").hidden = false;
+      document.getElementById("statsGrid").innerHTML = CONFIG.stats.items.map(item =>
+        `<div class="stat"><i class="fa-solid ${escapeHTML(item.icon)}"></i><h3>${escapeHTML(item.number)}</h3><p>${escapeHTML(item.label)}</p></div>`
+      ).join("");
+    }
+
+    // Work gallery: filter buttons, six initial projects, and load more.
+    let activeFilter = "All"; let visibleWorks = 6;
+    const workGrid = document.getElementById("workGrid");
+    const filters = document.getElementById("filters");
+    const loadMore = document.getElementById("loadMore");
+    ["All", ...CONFIG.categories].forEach(category => {
+      const button = document.createElement("button");
+      button.className = "filter-btn" + (category === "All" ? " active" : ""); button.textContent = category;
+      button.addEventListener("click", () => {
+        activeFilter = category; visibleWorks = 6;
+        filters.querySelectorAll("button").forEach(btn => btn.classList.toggle("active", btn === button));
+        renderWorks();
+      });
+      filters.appendChild(button);
+    });
+    function renderWorks() {
+      const filtered = CONFIG.works.filter(item => activeFilter === "All" || item.category === activeFilter);
+      workGrid.innerHTML = "";
+      if (!filtered.length) {
+        workGrid.innerHTML = `<div class="empty-work"><i class="fa-solid fa-folder-open"></i><h3>Projects Coming Soon</h3><p>My educational projects and creative work will be added here.</p></div>`;
+        loadMore.hidden = true; return;
+      }
+      filtered.slice(0, visibleWorks).forEach(item => {
+        const card = document.createElement("article"); card.className = "work-card card";
+        const media = isAvailable(item.media)
+          ? (item.type === "video" ? `<video src="${escapeHTML(item.media)}" autoplay muted loop playsinline></video>` : `<img src="${escapeHTML(item.media)}" loading="lazy" alt="${escapeHTML(item.title)}">`)
+          : `<div class="placeholder"><i class="fa-solid fa-book-open"></i><strong>Project Preview</strong></div>`;
+        card.innerHTML = `<div class="work-media">${media}</div><div class="work-content"><span class="work-category">${escapeHTML(item.category)}</span><h3>${escapeHTML(item.title)}</h3><p>${escapeHTML(item.description)}</p>${isAvailable(item.projectLink) ? `<a class="btn btn-outline project-link" href="${escapeHTML(item.projectLink)}" target="_blank" rel="noopener">View Project</a>` : ""}</div>`;
+        card.addEventListener("click", event => { if (!event.target.closest(".project-link")) openLightbox(item); });
+        workGrid.appendChild(card);
+      });
+      loadMore.hidden = filtered.length <= visibleWorks;
+    }
+    loadMore.addEventListener("click", () => { visibleWorks += 6; renderWorks(); });
+    renderWorks();
+
+    // Accessible project lightbox with Escape-key support.
+    const lightbox = document.getElementById("lightbox");
+    const lightboxContent = document.getElementById("lightboxContent");
+    function openLightbox(item) {
+      const media = isAvailable(item.media)
+        ? (item.type === "video" ? `<video src="${escapeHTML(item.media)}" controls autoplay playsinline></video>` : `<img src="${escapeHTML(item.media)}" alt="${escapeHTML(item.title)}">`)
+        : `<div class="placeholder" style="height:300px"><i class="fa-solid fa-image"></i><strong>Preview not added yet</strong></div>`;
+      lightboxContent.innerHTML = `${media}<h3>${escapeHTML(item.title)}</h3><p>${escapeHTML(item.description)}</p>${isAvailable(item.projectLink) ? `<a class="btn btn-primary lightbox-project" href="${escapeHTML(item.projectLink)}" target="_blank" rel="noopener">View Project</a>` : ""}`;
+      lightbox.classList.add("show"); document.body.style.overflow = "hidden"; document.getElementById("lightboxClose").focus();
+    }
+    function closeLightbox() { lightbox.classList.remove("show"); lightboxContent.innerHTML = ""; document.body.style.overflow = ""; }
+    document.getElementById("lightboxClose").addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", event => { if (event.target === lightbox) closeLightbox(); });
+
+    // About section: biography, photo, qualifications, tools, and skills.
+    document.getElementById("aboutHeading").textContent = CONFIG.aboutHeading;
+    document.getElementById("aboutDescription").innerHTML = CONFIG.aboutText.map(text => `<p>${escapeHTML(text)}</p>`).join("");
+    const aboutPhoto = document.getElementById("aboutPhoto");
+    aboutPhoto.innerHTML = isAvailable(CONFIG.profilePhoto)
+      ? `<img src="${escapeHTML(CONFIG.profilePhoto)}" alt="${escapeHTML(CONFIG.displayName)}" loading="lazy">`
+      : `<div class="placeholder"><i class="fa-solid fa-user-tie" style="font-size:65px"></i><strong>Profile Photo</strong><small>Your professional photo will appear here</small></div>`;
+    document.getElementById("aboutInfo").innerHTML = `
+      <div class="info-item"><strong>Profession</strong>${escapeHTML(CONFIG.profession)}</div>
+      <div class="info-item"><strong>Experience</strong>${escapeHTML(CONFIG.experience)}</div>
+      <div class="info-item"><strong>Subjects</strong>${escapeHTML(CONFIG.subjects.join(", "))}</div>
+      <div class="info-item"><strong>Classes</strong>${escapeHTML(CONFIG.classes)}</div>
+      ${isAvailable(CONFIG.location) ? `<div class="info-item"><strong>Location</strong>${escapeHTML(CONFIG.location)}</div>` : ""}
+      <div class="info-item"><strong>Institution</strong>${escapeHTML(CONFIG.brand)}</div>`;
+    document.getElementById("aboutInfo").insertAdjacentHTML("afterend", `<div class="chips" style="margin-top:0">${CONFIG.qualifications.map(q => `<span class="chip">${escapeHTML(q)}</span>`).join("")}</div>`);
+    document.getElementById("toolsList").innerHTML = CONFIG.tools.map(tool => `<span class="chip">${escapeHTML(tool)}</span>`).join("");
+    document.getElementById("skillsList").innerHTML = CONFIG.skills.map(skill => `<span class="chip">${escapeHTML(skill)}</span>`).join("");
+    if (isAvailable(CONFIG.resume)) { const resumeButton = document.getElementById("resumeButton"); resumeButton.hidden = false; resumeButton.href = CONFIG.resume; resumeButton.setAttribute("download", ""); }
+
+    // Render service cards and work-process cards.
+    document.getElementById("servicesGrid").innerHTML = CONFIG.services.map(service =>
+      `<article class="service-card card"><div class="service-icon"><i class="fa-solid ${escapeHTML(service.icon)}"></i></div><h3>${escapeHTML(service.title)}</h3><p>${escapeHTML(service.description)}</p></article>`
+    ).join("");
+    document.getElementById("processGrid").innerHTML = CONFIG.steps.map(step =>
+      `<article class="process-card card"><div class="step-number">${escapeHTML(step.number)}</div><h3>${escapeHTML(step.title)}</h3><p>${escapeHTML(step.description)}</p></article>`
+    ).join("");
+
+    // Pricing cards.
+    document.getElementById("pricingHeading").textContent = CONFIG.pricingHeading;
+    document.getElementById("pricingGrid").innerHTML = CONFIG.plans.map(plan =>
+      `<article class="price-card card ${plan.popular ? "popular" : ""}">${plan.popular ? '<span class="popular-label">POPULAR</span>' : ""}<h3>${escapeHTML(plan.name)}</h3><div class="price">${escapeHTML(plan.price)}</div><ul>${plan.features.map(feature => `<li><i class="fa-solid fa-check"></i>${escapeHTML(feature)}</li>`).join("")}</ul><a class="btn btn-outline" href="${escapeHTML(plan.link)}">${escapeHTML(plan.button)}</a></article>`
+    ).join("");
+
+    // Display testimonials only when real reviews are added.
+    if (CONFIG.testimonials.length) {
+      document.getElementById("testimonials").hidden = false;
+      document.getElementById("testimonialsGrid").innerHTML = CONFIG.testimonials.map(review =>
+        `<article class="testimonial card"><p>“${escapeHTML(review.text)}”</p><h4>${escapeHTML(review.name)}</h4><small>${escapeHTML(review.role)}</small></article>`
+      ).join("");
+    }
+
+    // FAQ accordion: only one answer can remain open at a time.
+    const faqList = document.getElementById("faqList");
+    CONFIG.faqs.forEach(faq => {
+      const item = document.createElement("div"); item.className = "faq-item";
+      item.innerHTML = `<button class="faq-question" aria-expanded="false"><span>${escapeHTML(faq.question)}</span><i class="fa-solid fa-plus"></i></button><div class="faq-answer"><div><p>${escapeHTML(faq.answer)}</p></div></div>`;
+      const button = item.querySelector(".faq-question");
+      button.addEventListener("click", () => {
+        const wasOpen = item.classList.contains("open");
+        faqList.querySelectorAll(".faq-item").forEach(other => { other.classList.remove("open"); other.querySelector(".faq-question").setAttribute("aria-expanded", "false"); });
+        if (!wasOpen) { item.classList.add("open"); button.setAttribute("aria-expanded", "true"); }
+      });
+      faqList.appendChild(item);
+    });
+
+    // Contact section details.
+    document.getElementById("formTitle").textContent = CONFIG.formTitle;
+    document.getElementById("formText").textContent = CONFIG.formText;
+    document.getElementById("contactInfo").innerHTML = `
+      <a href="mailto:${escapeHTML(CONFIG.email)}" class="contact-item card"><i class="fa-solid fa-envelope"></i><div><small>Email Address</small><strong>${escapeHTML(CONFIG.email)}</strong></div></a>
+      <a href="tel:${escapeHTML(CONFIG.phone)}" class="contact-item card"><i class="fa-solid fa-phone"></i><div><small>Phone Number</small><strong>${escapeHTML(CONFIG.phone)}</strong></div></a>
+      <a href="${escapeHTML(CONFIG.whatsapp)}" target="_blank" rel="noopener" class="contact-item card"><i class="fa-brands fa-whatsapp"></i><div><small>WhatsApp</small><strong>Chat With Me</strong></div></a>
+      ${isAvailable(CONFIG.location) ? `<div class="contact-item card"><i class="fa-solid fa-location-dot"></i><div><small>Location</small><strong>${escapeHTML(CONFIG.location)}</strong></div></div>` : ""}`;
+
+    // Build form fields from CONFIG.
+    const formInputs = document.getElementById("formInputs");
+    CONFIG.formFields.forEach((field, index) => {
+      const wrapper = document.createElement("div"); wrapper.className = "form-group";
+      const id = "contactField" + index;
+      const type = field.toLowerCase().includes("email") ? "email" : "text";
+      const required = index === 0 || type === "email";
+      wrapper.innerHTML = `<label for="${id}">${escapeHTML(field)}</label><input class="form-control" id="${id}" name="${escapeHTML(field)}" type="${type}" placeholder="Enter ${escapeHTML(field.toLowerCase())}" ${required ? "required" : ""}>`;
+      formInputs.appendChild(wrapper);
+    });
+    const serviceSelect = document.getElementById("serviceSelect");
+    CONFIG.formOptions.forEach(option => { const el = document.createElement("option"); el.value = option; el.textContent = option; serviceSelect.appendChild(el); });
+    document.getElementById("formSubmit").innerHTML = `${escapeHTML(CONFIG.formButton)} <i class="fa-solid fa-arrow-right"></i>`;
+
+    // Mailto form: opens the visitor's email app; it does not send automatically.
+    const contactForm = document.getElementById("contactForm");
+    const submitButton = document.getElementById("formSubmit");
+    contactForm.addEventListener("submit", event => {
+      event.preventDefault();
+      if (submitButton.disabled) return;
+      submitButton.disabled = true;
+      submitButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Preparing...';
+      const details = [];
+      CONFIG.formFields.forEach((field, index) => {
+        const value = document.getElementById("contactField" + index).value.trim();
+        if (value) details.push(field + ": " + value);
+      });
+      details.push("Service: " + serviceSelect.value);
+      const message = document.getElementById("message").value.trim();
+      if (message) details.push("Message: " + message);
+      const subject = encodeURIComponent("Portfolio Enquiry - " + CONFIG.displayName);
+      const body = encodeURIComponent("Hello " + CONFIG.displayName + ",\n\nI am contacting you through your portfolio website.\n\n" + details.join("\n") + "\n\nThank you.");
+      if (CONFIG.formMethod === "mailto") {
+        window.location.href = "mailto:" + CONFIG.email + "?subject=" + subject + "&body=" + body;
+        document.getElementById("popupTitle").textContent = CONFIG.popupTitle;
+        document.getElementById("popupMessage").textContent = CONFIG.popupMessage;
+        document.getElementById("successPopup").classList.add("show");
+        contactForm.reset();
+      }
+      submitButton.disabled = false;
+      submitButton.innerHTML = `${escapeHTML(CONFIG.formButton)} <i class="fa-solid fa-arrow-right"></i>`;
+    });
+
+    // Close the confirmation popup.
+    function closePopup() { document.getElementById("successPopup").classList.remove("show"); }
+    document.getElementById("popupClose").addEventListener("click", closePopup);
+    document.getElementById("successPopup").addEventListener("click", event => { if (event.target.id === "successPopup") closePopup(); });
+
+    // Render only social links that have been supplied.
+    const socialConfig = [
+      { key: "youtube", icon: "fa-youtube", label: "YouTube" }, { key: "instagram", icon: "fa-instagram", label: "Instagram" },
+      { key: "facebook", icon: "fa-facebook-f", label: "Facebook" }, { key: "linkedin", icon: "fa-linkedin-in", label: "LinkedIn" },
+      { key: "twitter", icon: "fa-x-twitter", label: "Twitter" }, { key: "pinterest", icon: "fa-pinterest-p", label: "Pinterest" },
+      { key: "behance", icon: "fa-behance", label: "Behance" }, { key: "dribbble", icon: "fa-dribbble", label: "Dribbble" }
+    ];
+    const socialLinks = document.getElementById("socialLinks");
+    socialConfig.forEach(item => {
+      const url = CONFIG.social[item.key];
+      if (isAvailable(url)) {
+        const link = document.createElement("a"); link.href = url; link.target = "_blank"; link.rel = "noopener";
+        link.setAttribute("aria-label", item.label); link.innerHTML = `<i class="fa-brands ${item.icon}"></i>`; socialLinks.appendChild(link);
+      }
+    });
+
+    // Footer content and current year.
+    document.getElementById("footerTagline").textContent = CONFIG.tagline;
+    document.getElementById("copyright").textContent = `© ${new Date().getFullYear()} ${CONFIG.name}. All rights reserved.`;
+
+    // Escape closes the lightbox and popup.
+    document.addEventListener("keydown", event => { if (event.key === "Escape") { closeLightbox(); closePopup(); } });
+  </script>
 </body>
 </html>
