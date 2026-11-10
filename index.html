@@ -377,6 +377,39 @@ This is a single-file website. No framework or backend is required.
       .hero-actions .btn { font-size: 10px; }
       .showcase-grid { grid-template-rows: 210px 130px 130px; }
     }
+
+    /* Part 1 refinement: opening actions, revealable four-card work and dedicated enquiry page */
+    .hero { padding-top: 72px; padding-bottom: 38px; }
+    .hero h1 { max-width: 900px; }
+    .showcase { display: none; padding-top: 25px; }
+    .showcase.show-work { display: block; animation: workReveal .55s ease both; }
+    @keyframes workReveal { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .showcase-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
+    .showcase-tile { min-height: 230px; }
+    .tile-placeholder { min-height: 230px; }
+    .hero-actions .btn { min-width: 205px; }
+    .hire-page { position: fixed; inset: 0; z-index: 2500; display: none; overflow-y: auto; background: #080808; }
+    .hire-page.active { display: block; animation: workReveal .3s ease both; }
+    .hire-topbar { min-height: 82px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(255,106,0,.18); }
+    .hire-back { border:1px solid var(--line); background:#111; color:#ddd; border-radius:999px; padding:12px 19px; font-weight:600; }
+    .hire-wrap { width:min(92%,650px); margin:58px auto 90px; }
+    .hire-wrap .section-head { margin-bottom:35px; }
+    .hire-form { padding:30px; border-color:rgba(255,106,0,.28); background:linear-gradient(145deg,rgba(255,106,0,.075),rgba(255,255,255,.025)); }
+    .hire-form .form-group { margin-bottom:20px; }
+    .hire-form label { display:block; color:#eee; font-size:14px; font-weight:500; margin-bottom:9px; }
+    .hire-form .field { min-height:58px; font-size:15px; border-radius:14px; background:#141416; }
+    .hire-form textarea.field { min-height:115px; }
+    .phone-field { display:flex; gap:10px; align-items:center; }
+    .phone-field > span { display:grid; place-items:center; min-width:68px; height:58px; border:1px solid rgba(255,106,0,.35); border-radius:14px; background:#21150e; color:#ffb078; font-weight:700; }
+    .phone-field .field { flex:1; min-width:0; }
+    .hire-form small,.hire-note { color:var(--muted); font-size:11px; display:block; margin-top:7px; }
+    .hire-form .btn { width:100%; border:0; margin-top:8px; min-height:60px; font-size:15px; }
+    .hire-error { min-height:18px; color:#ff8b75; font-size:12px; margin:0 0 5px; }
+    .hire-note { text-align:center; line-height:1.7; margin-top:16px; }
+    .hire-note b { color:#ffb078; }
+    body.hire-open { overflow:hidden; }
+    @media(max-width:640px) { .hero { padding-top:58px; } .hero h1 { letter-spacing:-1.8px; } .hero-actions { gap:10px; } .hero-actions .btn { min-width:0; flex:1; padding:0 14px; font-size:12px; min-height:54px; } .showcase-grid { grid-template-columns:1fr 1fr; gap:12px; } .showcase-tile,.tile-placeholder { min-height:190px; } .hire-wrap { margin-top:38px; } .hire-form { padding:21px; } }
+
   </style>
 </head>
 
@@ -419,7 +452,7 @@ This is a single-file website. No framework or backend is required.
       // Your qualifications
       qualifications: ["MA in Islamic History", "D.El.Ed.", "CTET Paper I Qualified", "OTET Paper I Qualified", "Graduation (In Progress)"],
       // Subjects you teach
-      subjects: ["Social Science", "English", "Science", "Mathematics"],
+      subjects: ["Social Science (SST)", "English"],
       // Classes you teach
       classes: "Classes 4–10",
       // Theme colors
@@ -431,9 +464,9 @@ This is a single-file website. No framework or backend is required.
       // Hero description
       heroText: "I am Sayeedur Rahman (Shahid Sir), a passionate teacher and educational content creator. I create engaging learning experiences, educational resources, digital worksheets and interactive study materials to make education simple and meaningful.",
       // Hero primary button
-      heroButton: { text: "Let's Connect", link: "#contact" },
+      heroButton: { text: "Hire Me", link: "#hire" },
       // Hero secondary button
-      workButton: { text: "Explore My Work", link: "#work" },
+      workButton: { text: "Past Work", link: "#past-work" },
       // Four hero showcase tiles. Replace media with image/video URLs.
       showcase: [
         { title: "Educational Notes & Worksheets", icon: "fa-book-open", type: "image", media: "none" },
@@ -446,7 +479,7 @@ This is a single-file website. No framework or backend is required.
       // Your about section paragraphs
       about: [
         "I am Sayeedur Rahman, professionally known as Shahid Sir. I am a teacher and educational content creator with a passion for making learning simple, creative and meaningful.",
-        "My work focuses on teaching Social Science, English, Science and Mathematics, along with creating educational notes, worksheets, practice papers and classroom presentations.",
+        "My work focuses on teaching Social Science (SST) and English, along with creating educational notes, worksheets, practice papers and classroom presentations.",
         "Through EZEE VISION CHAMPUA, I aim to support students with engaging teaching methods, useful learning resources and meaningful educational experiences."
       ],
       // Tools you use
@@ -476,7 +509,7 @@ This is a single-file website. No framework or backend is required.
       testimonials: [],
       // FAQ questions and answers
       faqs: [
-        { question: "What subjects do you teach?", answer: "I teach Social Science, English, Science and Mathematics for students in Classes 4–10." },
+        { question: "What subjects do you teach?", answer: "I teach Social Science (SST) and English, with a focus on clear explanations and exam-oriented learning." },
         { question: "How can I access free educational resources?", answer: "You can explore the available educational resources through the Work section and contact me for further information." },
         { question: "Do you create custom worksheets and presentations?", answer: "Yes. I create educational worksheets, practice papers, notes and PowerPoint presentations based on the required topic and learning objectives." },
         { question: "How can I contact you for paid services?", answer: "You can contact me through the enquiry form, WhatsApp or email to discuss your requirements and pricing." }
@@ -518,13 +551,13 @@ This is a single-file website. No framework or backend is required.
       <a href="#home" class="brand" id="brandLogo">Shahid<span>.</span></a>
       <nav aria-label="Main navigation">
         <ul class="nav-links" id="navLinks">
-          <li><a href="#home">Home</a></li><li><a href="#about">About</a></li>
+          <li><a href="#home">Home</a></li><li><a href="#faq">FAQ</a></li><li><a href="#about">About</a></li>
           <li><a href="#services">Services</a></li><li><a href="#work">Work</a></li>
           <li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
       <div class="nav-actions">
-        <a href="#contact" class="btn btn-primary">Let's Connect <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="#hire" class="btn btn-primary" id="navHire">Hire Me <i class="fa-solid fa-arrow-right"></i></a>
         <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
       </div>
     </div>
@@ -543,7 +576,7 @@ This is a single-file website. No framework or backend is required.
         </div>
         <div class="hero-meta reveal delay-3">
           <span><i class="fa-solid fa-location-dot"></i><span id="heroLocation"></span></span>
-          <span><i class="fa-solid fa-graduation-cap"></i> Classes 4–10</span>
+          <span><i class="fa-solid fa-book-open"></i> SST & English</span>
           <span><i class="fa-solid fa-book-open"></i> Learning made meaningful</span>
         </div>
       </div>
@@ -712,6 +745,30 @@ This is a single-file website. No framework or backend is required.
   </footer>
 
   <!-- PROJECT LIGHTBOX -->
+  <!-- Dedicated Hire Me page -->
+  <section class="hire-page" id="hirePage" aria-hidden="true">
+    <div class="hire-topbar container">
+      <button type="button" class="hire-back" id="hireBack"><i class="fa-solid fa-arrow-left"></i> Back</button>
+      <a class="brand" href="#home">Shahid<span>.</span></a>
+    </div>
+    <div class="hire-wrap">
+      <div class="section-head">
+        <span class="eyebrow">LET'S WORK TOGETHER</span>
+        <h2 class="section-title">Hire <span class="gradient-text">Me</span></h2>
+        <p class="section-desc">Tell me what educational support you need. Complete every field and send your request directly on WhatsApp.</p>
+      </div>
+      <form class="hire-form surface" id="hireForm" novalidate>
+        <div class="form-group"><label for="hireName">Your Name *</label><input class="field" id="hireName" name="name" required autocomplete="name" placeholder="Enter your full name"></div>
+        <div class="form-group"><label for="hirePhone">Indian Mobile Number *</label><div class="phone-field"><span>+91</span><input class="field" id="hirePhone" name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="10" pattern="[6-9][0-9]{9}" required placeholder="10-digit mobile number"></div><small>India (+91) only · Enter exactly 10 digits</small></div>
+        <div class="form-group"><label for="hireService">Select Service *</label><select class="field" id="hireService" name="service" required><option value="">Choose a service</option><option>Educational Content Creation</option><option>PowerPoint Presentation</option><option>Educational Video Creation</option><option>Teaching at EZEE VISION CHAMPUA</option><option>Other</option></select></div>
+        <div class="form-group"><label for="hireDetails">Tell me briefly about your requirement *</label><textarea class="field" id="hireDetails" name="details" required placeholder="Subject, topic, class or details of your requirement"></textarea></div>
+        <p class="hire-error" id="hireError" role="alert" aria-live="polite"></p>
+        <button class="btn btn-primary" type="submit">Submit Request <i class="fa-solid fa-arrow-right"></i></button>
+        <p class="hire-note">Your WhatsApp will open with the enquiry prepared. Tap <b>Send</b> in WhatsApp to deliver it.</p>
+      </form>
+    </div>
+  </section>
+
   <div class="modal" id="projectModal" role="dialog" aria-modal="true" aria-label="Project preview">
     <button class="modal-close" id="modalClose" aria-label="Close preview"><i class="fa-solid fa-xmark"></i></button>
     <div class="modal-box" id="modalContent"></div>
@@ -1022,5 +1079,39 @@ This is a single-file website. No framework or backend is required.
     }, { passive: true });
     backTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
   </script>
+
+<script>
+(() => {
+  const hirePage = document.getElementById('hirePage');
+  const openHire = (event) => { if (event) event.preventDefault(); hirePage.classList.add('active'); hirePage.setAttribute('aria-hidden','false'); document.body.classList.add('hire-open'); document.getElementById('hireName').focus({preventScroll:true}); };
+  const closeHire = () => { hirePage.classList.remove('active'); hirePage.setAttribute('aria-hidden','true'); document.body.classList.remove('hire-open'); };
+  document.getElementById('heroPrimary').addEventListener('click', openHire);
+  document.getElementById('navHire').addEventListener('click', openHire);
+  document.getElementById('hireBack').addEventListener('click', closeHire);
+  document.getElementById('heroSecondary').addEventListener('click', event => {
+    event.preventDefault();
+    const section = document.querySelector('.showcase');
+    section.classList.add('show-work');
+    section.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+  document.getElementById('hirePhone').addEventListener('input', event => { event.target.value = event.target.value.replace(/\D/g,'').slice(0,10); });
+  document.getElementById('hireForm').addEventListener('submit', event => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const name = document.getElementById('hireName').value.trim();
+    const phone = document.getElementById('hirePhone').value.trim();
+    const service = document.getElementById('hireService').value;
+    const details = document.getElementById('hireDetails').value.trim();
+    const error = document.getElementById('hireError');
+    if (!name || !phone || !service || !details) { error.textContent = 'Please fill in every required field.'; return; }
+    if (!/^[6-9]\d{9}$/.test(phone)) { error.textContent = 'Enter a valid 10-digit Indian mobile number starting with 6, 7, 8 or 9.'; return; }
+    error.textContent = '';
+    const msg = `New Portfolio Enquiry – Shahid Sir\n\nName: ${name}\nMobile: +91${phone}\nService: ${service}\nRequirement: ${details}`;
+    window.open('https://wa.me/919124478453?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+  });
+  document.addEventListener('keydown', event => { if (event.key === 'Escape' && hirePage.classList.contains('active')) closeHire(); });
+})();
+</script>
+
 </body>
 </html>
