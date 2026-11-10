@@ -45,6 +45,8 @@ This is a single-file website. No framework or backend is required.
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    body, main, section, .container { max-width: 100%; }
+    .stats-grid > * { min-width: 0; }
     html { scroll-behavior: smooth; scroll-padding-top: 88px; }
     body {
       background: var(--bg);
@@ -379,14 +381,16 @@ This is a single-file website. No framework or backend is required.
     }
 
     /* Part 1 refinement: opening actions, revealable four-card work and dedicated enquiry page */
-    .hero { padding-top: 72px; padding-bottom: 38px; }
-    .hero h1 { max-width: 900px; }
-    .showcase { display: none; padding-top: 25px; }
-    .showcase.show-work { display: block; animation: workReveal .55s ease both; }
-    @keyframes workReveal { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-    .showcase-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
-    .showcase-tile { min-height: 230px; }
-    .tile-placeholder { min-height: 230px; }
+    .hero { padding-top: 65px; padding-bottom: 26px; }
+    .hero h1 { max-width: 980px; }
+    /* Keep the opening headline, intro and two buttons visible immediately on first load. */
+    .hero .reveal { opacity: 1 !important; transform: none !important; }
+    .stats { display: block; padding: 18px 0 72px; }
+    .stats .section-head { margin-bottom: 28px; }
+    .stats-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 15px; }
+    .stat-card { min-width: 0; min-height: 188px; padding: 25px 12px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+    .stat-card h3 { font-size: clamp(17px, 2vw, 25px); line-height: 1.25; overflow-wrap: anywhere; }
+    .stat-card p { font-size: 11px; line-height: 1.45; }
     .hero-actions .btn { min-width: 205px; }
     .hire-page { position: fixed; inset: 0; z-index: 2500; display: none; overflow-y: auto; background: #080808; }
     .hire-page.active { display: block; animation: workReveal .3s ease both; }
@@ -408,7 +412,27 @@ This is a single-file website. No framework or backend is required.
     .hire-note { text-align:center; line-height:1.7; margin-top:16px; }
     .hire-note b { color:#ffb078; }
     body.hire-open { overflow:hidden; }
-    @media(max-width:640px) { .hero { padding-top:58px; } .hero h1 { letter-spacing:-1.8px; } .hero-actions { gap:10px; } .hero-actions .btn { min-width:0; flex:1; padding:0 14px; font-size:12px; min-height:54px; } .showcase-grid { grid-template-columns:1fr 1fr; gap:12px; } .showcase-tile,.tile-placeholder { min-height:190px; } .hire-wrap { margin-top:38px; } .hire-form { padding:21px; } }
+    @media(max-width:640px) {
+      .hero { padding-top:52px; padding-bottom:22px; }
+      .hero h1 { font-size:clamp(34px,8.5vw,46px); letter-spacing:-1.7px; line-height:1.16; }
+      .hero-copy { max-width:540px; margin-bottom:25px; }
+      .hero-actions { gap:10px; width:100%; }
+      .hero-actions .btn { min-width:0; flex:1 1 0; padding:0 10px; font-size:12px; min-height:55px; }
+      .hero-meta { margin-top:18px; font-size:10px; gap:9px 14px; }
+      .stats { padding:12px 0 58px; }
+      .stats-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+      .stat-card { min-height:172px; padding:21px 9px; border-radius:21px; }
+      .stat-icon { width:58px; height:58px; font-size:20px; margin-bottom:13px; }
+      .stat-card h3 { font-size:clamp(16px,4.5vw,21px); }
+      .stat-card p { font-size:10px; }
+      .hire-wrap { margin-top:38px; }
+      .hire-form { padding:21px; }
+    }
+    @media(max-width:360px) {
+      .hero-actions .btn { font-size:10px; gap:6px; }
+      .stat-card { min-height:160px; }
+      .stat-card h3 { font-size:15px; }
+    }
 
   </style>
 </head>
@@ -460,13 +484,13 @@ This is a single-file website. No framework or backend is required.
       // Hero heading
       heroHeading: "Not Just Teaching. We Make Learning Meaningful.",
       // Animated hero keywords
-      heroWords: ["Creative", "Interactive", "Meaningful", "Engaging"],
+      heroWords: ["Teaching", "Explaining", "Inspiring", "Creating"],
       // Hero description
       heroText: "I am Sayeedur Rahman (Shahid Sir), a passionate teacher and educational content creator. I create engaging learning experiences, educational resources, digital worksheets and interactive study materials to make education simple and meaningful.",
       // Hero primary button
       heroButton: { text: "Hire Me", link: "#hire" },
       // Hero secondary button
-      workButton: { text: "Past Work", link: "#past-work" },
+      workButton: { text: "Past Work", link: "#work" },
       // Four hero showcase tiles. Replace media with image/video URLs.
       showcase: [
         { title: "Educational Notes & Worksheets", icon: "fa-book-open", type: "image", media: "none" },
@@ -474,8 +498,13 @@ This is a single-file website. No framework or backend is required.
         { title: "Teaching & Content Creation", icon: "fa-chalkboard-user", type: "image", media: "none" },
         { title: "Professional Introduction", icon: "fa-user-tie", type: "image", media: "none" }
       ],
-      // Statistics stay hidden until real numbers are added.
-      stats: { enabled: false, items: [] },
+      // Four visible professional highlights using confirmed details only.
+      stats: { enabled: true, items: [
+        { value: "2 Years", label: "Teaching Experience", icon: "fa-award" },
+        { value: "SST & English", label: "Core Subjects", icon: "fa-book-open" },
+        { value: "4–10", label: "Classes I Teach", icon: "fa-user-graduate" },
+        { value: "CTET + OTET", label: "Paper I Qualified", icon: "fa-certificate" }
+      ] },
       // Your about section paragraphs
       about: [
         "I am Sayeedur Rahman, professionally known as Shahid Sir. I am a teacher and educational content creator with a passion for making learning simple, creative and meaningful.",
@@ -551,7 +580,7 @@ This is a single-file website. No framework or backend is required.
       <a href="#home" class="brand" id="brandLogo">Shahid<span>.</span></a>
       <nav aria-label="Main navigation">
         <ul class="nav-links" id="navLinks">
-          <li><a href="#home">Home</a></li><li><a href="#faq">FAQ</a></li><li><a href="#about">About</a></li>
+          <li><a href="#home">Home</a></li><li><a href="#about">About</a></li>
           <li><a href="#services">Services</a></li><li><a href="#work">Work</a></li>
           <li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li>
         </ul>
@@ -582,16 +611,11 @@ This is a single-file website. No framework or backend is required.
       </div>
     </section>
 
-    <!-- FOUR TILE SHOWCASE -->
-    <section class="showcase">
+    <!-- FOUR PROFESSIONAL HIGHLIGHT CARDS: visible as soon as the homepage opens -->
+    <section class="stats" id="past-work">
       <div class="container">
-        <div class="showcase-grid" id="showcaseGrid"></div>
+        <div class="stats-grid" id="statsGrid"></div>
       </div>
-    </section>
-
-    <!-- OPTIONAL REAL STATS -->
-    <section class="stats" id="statsSection" hidden>
-      <div class="container stats-grid" id="statsGrid"></div>
     </section>
 
     <!-- ABOUT -->
@@ -790,8 +814,7 @@ This is a single-file website. No framework or backend is required.
       : `${esc(CONFIG.displayName.replace(" Sir",""))}<span>.</span>`;
 
     const heroHeading = document.getElementById("heroHeading");
-    const headingParts = CONFIG.heroHeading.split(" ");
-    heroHeading.innerHTML = `${esc(headingParts.slice(0,2).join(" "))} <span class="word" id="rotatingWord">${esc(CONFIG.heroWords[0])}</span><br>${esc(headingParts.slice(2).join(" "))}`;
+    heroHeading.innerHTML = `Not Just <span class="word" id="rotatingWord">${esc(CONFIG.heroWords[0])}</span><br>We Make Learning <span class="gradient-text">Meaningful.</span>`;
 
     // Rotate the accent word in the hero heading.
     let wordIndex = 0;
@@ -830,32 +853,16 @@ This is a single-file website. No framework or backend is required.
       menuToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
     }));
 
-    // Four tile hero showcase.
-    const showcaseGrid = document.getElementById("showcaseGrid");
-    CONFIG.showcase.slice(0,4).forEach((item, index) => {
-      const tile = document.createElement("div");
-      tile.className = `showcase-tile reveal ${index ? "delay-" + Math.min(index,3) : ""}`;
-      if (available(item.media)) {
-        tile.innerHTML = item.type === "video"
-          ? `<video src="${esc(item.media)}" autoplay muted loop playsinline aria-label="${esc(item.title)}"></video>`
-          : `<img src="${esc(item.media)}" loading="lazy" alt="${esc(item.title)}">`;
-      } else {
-        tile.innerHTML = `<div class="tile-placeholder"><span class="tile-icon"><i class="fa-solid ${esc(item.icon)}"></i></span><strong>${esc(item.title)}</strong><small>Portfolio preview will be added soon</small></div>`;
-      }
-      showcaseGrid.appendChild(tile);
-    });
-
-    // Statistics: never invent numbers; render only when real values are supplied.
+    // Render four confirmed professional highlights.
     if (CONFIG.stats.enabled && CONFIG.stats.items.length) {
-      const section = document.getElementById("statsSection");
-      const grid = document.getElementById("statsGrid");
-      section.hidden = false;
-      CONFIG.stats.items.forEach((item, i) => {
-        const card = document.createElement("div");
-        card.className = `stat-card reveal delay-${i % 4}`;
-        card.innerHTML = `<span class="stat-icon"><i class="fa-solid ${esc(item.icon || "fa-star")}"></i></span><h3>${esc(item.number)}</h3><p>${esc(item.label)}</p>`;
-        grid.appendChild(card);
-      });
+      document.getElementById("statsGrid").innerHTML =
+        CONFIG.stats.items.map((item, index) => `
+          <article class="stat-card reveal delay-${index % 4}">
+            <span class="stat-icon"><i class="fa-solid ${esc(item.icon || "fa-star")}"></i></span>
+            <h3>${esc(item.value)}</h3>
+            <p>${esc(item.label)}</p>
+          </article>
+        `).join("");
     }
 
     // About section.
@@ -1090,9 +1097,7 @@ This is a single-file website. No framework or backend is required.
   document.getElementById('hireBack').addEventListener('click', closeHire);
   document.getElementById('heroSecondary').addEventListener('click', event => {
     event.preventDefault();
-    const section = document.querySelector('.showcase');
-    section.classList.add('show-work');
-    section.scrollIntoView({behavior:'smooth',block:'start'});
+    document.getElementById('work').scrollIntoView({behavior:'smooth', block:'start'});
   });
   document.getElementById('hirePhone').addEventListener('input', event => { event.target.value = event.target.value.replace(/\D/g,'').slice(0,10); });
   document.getElementById('hireForm').addEventListener('submit', event => {
