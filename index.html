@@ -1,331 +1,480 @@
 <!--
-HOW TO CUSTOMIZE:
-1. Change your profession, name and personal details in CONFIG.
-2. Change the theme colors in CONFIG.theme.
-3. Replace the four showcase media links in CONFIG.showcase.
-4. Add your real work images/videos as entries in CONFIG.works.
-5. Edit tools, skills, services, process steps, plans and FAQs.
-6. Add your profile photo, logo and resume links when ready.
-7. Update social links and contact details in CONFIG.
+HOW TO CUSTOMIZE
+1. Change your name, profession and introduction in CONFIG.
+2. Change the orange theme colors in CONFIG.theme.
+3. Replace the four showcase image/video links in CONFIG.showcase.
+4. Add your real projects in CONFIG.projects (one object per project).
+5. Edit your services, skills, qualifications, FAQs and pricing in CONFIG.
+6. Add your profile photo, resume and social links in CONFIG.
+7. Save this file as index.html and upload it to Netlify.
+
+This is a single-file website. No framework or backend is required.
 -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#111114">
+  <meta name="theme-color" content="#080808">
   <meta name="description" content="Sayeedur Rahman (Shahid Sir) — Teacher and Educational Content Creator. Making Learning Simple, Creative & Meaningful.">
   <title>Shahid Sir | Teacher & Educational Content Creator</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
   <style>
     :root {
-      --accent: #D4A843;
-      --bg: #111114;
-      --card: #1B1B20;
-      --heading: #FFFFFF;
-      --body: #B9B9C2;
-      --border: rgba(255,255,255,.10);
-      --soft: rgba(212,168,67,.10);
-      --font: 'Poppins', sans-serif;
-      --radius: 16px;
+      --bg: #080808;
+      --bg-soft: #0d0d0f;
+      --card: #151517;
+      --card-2: #1b1b1e;
+      --text: #f8f7f5;
+      --muted: #aaa8a6;
+      --muted-2: #777472;
+      --orange: #ff6a00;
+      --orange-2: #ff3d00;
+      --peach: #ffb078;
+      --line: rgba(255,255,255,.09);
+      --line-orange: rgba(255,106,0,.30);
+      --font: "Poppins", sans-serif;
       --container: 1160px;
+      --radius: 26px;
+      --shadow-orange: 0 0 34px rgba(255,83,0,.20);
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
-    body { font-family: var(--font); background: var(--bg); color: var(--body); line-height: 1.7; overflow-x: hidden; }
-    img, video { max-width: 100%; display: block; }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: .17;
+      background-image: linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(to bottom, black, transparent 82%);
+    }
     a { color: inherit; text-decoration: none; }
     button, input, textarea, select { font: inherit; }
     button { cursor: pointer; }
+    img, video { display: block; max-width: 100%; }
     [hidden] { display: none !important; }
     .container { width: min(92%, var(--container)); margin: auto; }
-    .section { padding: 90px 0; }
-    .section-title { color: var(--heading); font-size: clamp(27px, 4vw, 38px); line-height: 1.3; font-weight: 700; margin-bottom: 12px; }
-    .section-subtitle { max-width: 650px; font-size: 14px; margin-bottom: 38px; }
-    .accent { color: var(--accent); }
-    .eyebrow { color: var(--accent); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; }
-    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 13px 23px; border-radius: 10px; font-size: 13px; font-weight: 600; border: 1px solid var(--accent); transition: .25s ease; }
-    .btn-primary { color: #17130A; background: var(--accent); }
-    .btn-primary:hover { background: transparent; color: var(--accent); transform: translateY(-3px); }
-    .btn-outline { color: var(--accent); background: transparent; }
-    .btn-outline:hover { background: var(--soft); transform: translateY(-3px); }
-    .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); }
-    .navbar { position: sticky; top: 0; z-index: 1000; background: rgba(17,17,20,.96); border-bottom: 1px solid var(--border); backdrop-filter: blur(12px); }
-    .nav-inner { min-height: 76px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
-    .logo { color: var(--heading); font-size: 22px; font-weight: 700; white-space: nowrap; }
-    .logo span { color: var(--accent); }
-    .logo img { height: 42px; width: auto; }
-    .nav-links { display: flex; align-items: center; gap: 25px; list-style: none; }
-    .nav-links a { color: var(--body); font-size: 12px; transition: .2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--accent); }
-    .nav-right { display: flex; align-items: center; gap: 12px; }
-    .nav-right .btn { padding: 10px 17px; }
-    .menu-toggle { display: none; width: 42px; height: 42px; border: 1px solid var(--border); background: var(--card); color: var(--heading); border-radius: 9px; font-size: 18px; }
-    .hero { padding: 85px 0 45px; text-align: center; }
-    .hero-label { display: inline-flex; gap: 9px; align-items: center; color: var(--accent); border: 1px solid rgba(212,168,67,.25); background: var(--soft); padding: 8px 16px; border-radius: 30px; font-size: 11px; margin-bottom: 24px; }
-    .hero h1 { max-width: 900px; margin: auto; color: var(--heading); font-size: clamp(35px, 6vw, 65px); line-height: 1.17; font-weight: 700; letter-spacing: -1.5px; }
-    .hero h1 span { color: var(--accent); }
-    .hero-description { max-width: 720px; margin: 23px auto 28px; font-size: 14px; }
-    .hero-buttons { display: flex; justify-content: center; align-items: center; gap: 13px; }
-    .showcase { padding: 35px 0 75px; }
-    .showcase-grid { display: grid; grid-template-columns: 1.15fr 1fr 1fr; grid-template-rows: 190px 190px; gap: 15px; }
-    .showcase-item { position: relative; overflow: hidden; border-radius: var(--radius); border: 1px solid var(--border); background: linear-gradient(135deg,#29241A,#1B1B20); min-width: 0; }
-    .showcase-item:first-child { grid-row: span 2; }
-    .showcase-item img, .showcase-item video { width: 100%; height: 100%; object-fit: cover; transition: transform .35s ease; }
-    .showcase-item:hover img, .showcase-item:hover video { transform: scale(1.04); }
-    .placeholder { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; height: 100%; background: linear-gradient(145deg,#29241B,#1B1B20); }
-    .placeholder i { font-size: 34px; color: var(--accent); margin-bottom: 15px; }
-    .placeholder strong { color: var(--heading); font-size: 13px; }
-    .placeholder small { font-size: 10px; margin-top: 5px; }
-    .stats { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 30px 0; }
-    .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
-    .stat { text-align: center; }
-    .stat i { color: var(--accent); font-size: 23px; margin-bottom: 8px; }
-    .stat h3 { color: var(--heading); font-size: 25px; }
-    .stat p { font-size: 11px; }
-    .filters { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 30px; }
-    .filter-btn { background: var(--card); color: var(--body); border: 1px solid var(--border); border-radius: 30px; padding: 9px 17px; font-size: 11px; transition: .2s; }
-    .filter-btn:hover, .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #17130A; }
-    .work-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
-    .work-card { overflow: hidden; cursor: pointer; transition: transform .25s ease; }
-    .work-card:hover { transform: translateY(-5px); }
-    .work-media { width: 100%; aspect-ratio: 16/10; background: linear-gradient(135deg,#29241B,#24242B); overflow: hidden; }
-    .work-media img, .work-media video { width: 100%; height: 100%; object-fit: cover; }
-    .work-content { padding: 18px; }
-    .work-category { color: var(--accent); font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
-    .work-content h3 { color: var(--heading); font-size: 15px; margin: 7px 0; }
-    .work-content p { font-size: 11px; }
-    .work-content .btn { margin-top: 14px; padding: 9px 13px; font-size: 11px; }
-    .empty-work { padding: 45px 20px; text-align: center; border: 1px dashed var(--border); border-radius: var(--radius); grid-column: 1/-1; }
-    .empty-work i { color: var(--accent); font-size: 30px; margin-bottom: 15px; }
-    .empty-work h3 { color: var(--heading); margin-bottom: 7px; }
-    .load-more { display: block; margin: 32px auto 0; }
-    .about-grid { display: grid; grid-template-columns: .85fr 1.15fr; align-items: center; gap: 55px; }
-    .about-photo { aspect-ratio: 4/5; overflow: hidden; border-radius: var(--radius); border: 1px solid var(--border); background: linear-gradient(145deg,#29241B,#1B1B20); }
-    .about-photo img { width: 100%; height: 100%; object-fit: cover; }
-    .about-photo .placeholder { min-height: 100%; }
-    .about-text p { font-size: 13px; margin-bottom: 15px; }
-    .info-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 23px 0; }
-    .info-item { font-size: 11px; overflow-wrap: anywhere; }
-    .info-item strong { color: var(--heading); display: block; font-size: 12px; }
-    .chips { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 15px; }
-    .chip { background: var(--soft); border: 1px solid rgba(212,168,67,.2); color: var(--accent); padding: 7px 12px; border-radius: 7px; font-size: 10px; }
-    .services-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 18px; }
-    .service-card { padding: 27px; transition: .25s ease; }
-    .service-card:hover { transform: translateY(-4px); border-color: rgba(212,168,67,.45); }
-    .service-icon { width: 49px; height: 49px; border-radius: 12px; display: grid; place-items: center; color: var(--accent); background: var(--soft); font-size: 20px; margin-bottom: 18px; }
-    .service-card h3 { color: var(--heading); font-size: 15px; margin-bottom: 9px; }
-    .service-card p { font-size: 12px; }
+    .section { padding: 105px 0; position: relative; }
+    .section-head { text-align: center; max-width: 760px; margin: 0 auto 48px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 8px 17px; border: 1px solid var(--line-orange);
+      border-radius: 999px; color: var(--peach); background: rgba(255,106,0,.08);
+      text-transform: uppercase; letter-spacing: 2px; font-size: 11px; font-weight: 600;
+      box-shadow: 0 0 24px rgba(255,106,0,.10);
+    }
+    .eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 12px var(--orange); }
+    .section-title {
+      font-size: clamp(34px, 5vw, 58px); line-height: 1.18; letter-spacing: -1.8px;
+      font-weight: 800; margin: 20px 0 15px; color: var(--text);
+    }
+    .gradient-text {
+      background: linear-gradient(100deg, #fff1e6 0%, #ffb078 34%, #ff6a00 75%, #ff3d00 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .section-desc { color: var(--muted); font-size: 15px; max-width: 680px; margin: auto; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 13px;
+      min-height: 58px; padding: 0 30px; border-radius: 999px; font-size: 14px;
+      font-weight: 700; border: 1px solid transparent; transition: transform .25s, background .25s, border-color .25s, box-shadow .25s;
+    }
+    .btn-primary {
+      color: white; background: linear-gradient(110deg, #ff7b19, #ff3d00);
+      box-shadow: 0 10px 30px rgba(255,75,0,.24), inset 0 1px 0 rgba(255,255,255,.28);
+    }
+    .btn-primary:hover { transform: translateY(-4px); box-shadow: 0 14px 38px rgba(255,75,0,.36); }
+    .btn-outline { color: var(--text); border-color: rgba(255,255,255,.7); background: transparent; }
+    .btn-outline:hover { border-color: var(--orange); color: var(--peach); transform: translateY(-4px); }
+    .surface {
+      background: linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.018));
+      border: 1px solid var(--line); border-radius: var(--radius);
+    }
+
+    /* Navigation */
+    .navbar {
+      position: sticky; top: 0; z-index: 1000; background: rgba(8,8,8,.88);
+      backdrop-filter: blur(18px); border-bottom: 1px solid rgba(255,106,0,.13);
+    }
+    .nav-inner { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { font-size: 27px; font-weight: 800; color: white; letter-spacing: -1.2px; }
+    .brand span { color: var(--orange); }
+    .nav-links { display: flex; align-items: center; gap: 27px; list-style: none; }
+    .nav-links a { font-size: 12px; color: #c7c4c1; transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--peach); }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+    .nav-actions .btn { min-height: 44px; padding: 0 21px; font-size: 12px; }
+    .menu-toggle { display: none; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 12px; color: white; background: var(--card); font-size: 19px; }
+
+    /* Hero */
+    .hero { padding: 104px 0 48px; text-align: center; overflow: hidden; }
+    .hero::before {
+      content: ""; position: absolute; width: 520px; height: 420px; border-radius: 50%;
+      background: rgba(255,80,0,.10); filter: blur(110px); top: 65px; left: 50%; transform: translateX(-50%); pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero h1 { max-width: 980px; margin: 28px auto 20px; font-size: clamp(39px, 7vw, 78px); line-height: 1.12; letter-spacing: -3.6px; font-weight: 800; }
+    .hero h1 .word { display: inline-block; color: var(--orange); text-shadow: 0 0 26px rgba(255,90,0,.28); animation: wordFocus 4.5s ease-in-out infinite; }
+    @keyframes wordFocus { 0%,100% { filter: blur(0); opacity: 1; } 45% { filter: blur(2px); opacity: .72; } 55% { filter: blur(0); opacity: 1; } }
+    .hero-copy { max-width: 790px; margin: 0 auto 32px; color: #b9b6b4; font-size: clamp(15px, 2vw, 21px); line-height: 1.9; }
+    .hero-actions { display: flex; justify-content: center; flex-wrap: nowrap; gap: 15px; }
+    .hero-actions .btn { min-width: 205px; }
+    .hero-meta { margin: 25px auto 0; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; color: var(--muted-2); font-size: 11px; }
+    .hero-meta span { display: inline-flex; align-items: center; gap: 7px; }
+    .hero-meta i { color: var(--orange); }
+
+    /* Four image tiles */
+    .showcase { padding: 48px 0 88px; }
+    .showcase-grid { display: grid; grid-template-columns: 1.05fr 1fr 1fr; grid-template-rows: 205px 205px; gap: 18px; }
+    .showcase-tile { position: relative; overflow: hidden; border-radius: 25px; border: 1px solid rgba(255,106,0,.22); background: #15110e; box-shadow: inset 0 0 25px rgba(255,106,0,.035); }
+    .showcase-tile:first-child { grid-row: span 2; }
+    .showcase-tile img, .showcase-tile video { width: 100%; height: 100%; object-fit: cover; transition: transform .7s cubic-bezier(.2,.7,.2,1); }
+    .showcase-tile:hover img, .showcase-tile:hover video { transform: scale(1.06); }
+    .tile-placeholder {
+      width: 100%; height: 100%; min-height: 150px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center; padding: 24px;
+      background: radial-gradient(circle at 50% 38%, rgba(255,106,0,.15), transparent 42%), linear-gradient(145deg,#1c1714,#101012);
+    }
+    .tile-icon { width: 78px; height: 78px; display: grid; place-items: center; border-radius: 50%; color: white; font-size: 27px; background: linear-gradient(145deg,#ff8a21,#ff4a00); box-shadow: 0 0 0 8px rgba(255,106,0,.10), 0 0 30px rgba(255,106,0,.26); margin-bottom: 20px; }
+    .tile-placeholder strong { color: white; font-size: 14px; }
+    .tile-placeholder small { color: var(--muted); font-size: 10px; margin-top: 5px; }
+
+    /* Stats */
+    .stats { padding: 5px 0 85px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; }
+    .stat-card { text-align: center; padding: 32px 18px; min-height: 205px; position: relative; overflow: hidden; background: radial-gradient(circle at 50% 30%, rgba(255,106,0,.10), transparent 58%), #15110f; border: 1px solid rgba(255,106,0,.18); border-radius: 25px; }
+    .stat-card::after { content: ""; position: absolute; inset: 4px; border: 1px solid rgba(255,255,255,.035); border-radius: 21px; pointer-events: none; }
+    .stat-icon { width: 68px; height: 68px; display: grid; place-items: center; margin: 0 auto 15px; color: white; border-radius: 50%; background: linear-gradient(145deg,#ff8a16,#ff4a00); box-shadow: 0 0 0 7px rgba(255,106,0,.11), 0 0 27px rgba(255,106,0,.28); font-size: 23px; }
+    .stat-card h3 { font-size: 29px; color: white; font-weight: 800; }
+    .stat-card p { color: #c0b8b2; font-size: 13px; margin-top: 7px; }
+
+    /* About */
+    .about-section { background: linear-gradient(180deg, transparent, rgba(255,106,0,.025), transparent); }
+    .about-panel { padding: 65px 45px 45px; text-align: center; position: relative; overflow: hidden; }
+    .about-panel::before { content: ""; position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px); background-size: 55px 55px; opacity: .45; mask-image: linear-gradient(to bottom,black,transparent); }
+    .about-panel > * { position: relative; }
+    .about-avatar { width: 112px; height: 112px; border-radius: 50%; overflow: hidden; margin: 28px auto 22px; border: 2px solid rgba(255,106,0,.65); box-shadow: 0 0 0 8px rgba(255,106,0,.08), 0 0 35px rgba(255,106,0,.20); background: #21150f; }
+    .about-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .about-avatar .avatar-placeholder { height: 100%; display: grid; place-items: center; color: var(--orange); font-size: 42px; }
+    .about-name { font-size: clamp(32px,5vw,58px); font-weight: 800; letter-spacing: -2px; }
+    .about-role { color: var(--peach); font-size: clamp(16px,2.4vw,23px); font-weight: 600; margin: 7px 0 20px; }
+    .about-copy { max-width: 850px; margin: auto; color: var(--muted); font-size: 14px; }
+    .about-copy p + p { margin-top: 13px; }
+    .about-facts { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin: 28px 0 12px; }
+    .fact-chip, .skill-chip { border: 1px solid var(--line); background: rgba(255,255,255,.035); border-radius: 999px; padding: 9px 15px; color: #d5d0cc; font-size: 11px; }
+    .fact-chip i { color: var(--orange); margin-right: 7px; }
+    .skills-track { overflow: hidden; margin-top: 35px; mask-image: linear-gradient(90deg,transparent,black 8%,black 92%,transparent); }
+    .skills-marquee { display: flex; width: max-content; gap: 12px; animation: marquee 28s linear infinite; }
+    .skills-track:hover .skills-marquee { animation-play-state: paused; }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+    .skill-chip { font-size: 12px; padding: 11px 18px; white-space: nowrap; border-color: rgba(255,106,0,.18); }
+    .skill-chip i { color: var(--orange); margin-right: 8px; }
+
+    /* Services */
+    .services-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+    .service-card { padding: 34px; min-height: 285px; position: relative; overflow: hidden; transition: transform .35s, border-color .35s, background .35s; }
+    .service-card::after { content: ""; position: absolute; width: 120px; height: 120px; right: -55px; bottom: -65px; border-radius: 50%; background: rgba(255,106,0,.10); filter: blur(30px); transition: .35s; }
+    .service-card:hover { transform: translateY(-7px); border-color: rgba(255,106,0,.45); background: linear-gradient(145deg,rgba(255,106,0,.07),rgba(255,255,255,.02)); }
+    .service-icon { width: 76px; height: 76px; display: grid; place-items: center; border-radius: 22px; border: 1px solid rgba(255,106,0,.35); color: #ff9a4a; background: linear-gradient(145deg,rgba(255,106,0,.18),rgba(255,106,0,.035)); box-shadow: 0 8px 25px rgba(255,106,0,.10); font-size: 27px; margin-bottom: 26px; }
+    .service-card h3 { font-size: 22px; margin-bottom: 12px; color: white; }
+    .service-card p { color: var(--muted); font-size: 13px; max-width: 500px; }
+    .service-tags { border-top: 1px solid var(--line); padding-top: 20px; margin-top: 23px; display: flex; flex-wrap: wrap; gap: 9px; }
+    .service-tags span { border: 1px solid var(--line); background: rgba(255,255,255,.035); border-radius: 999px; padding: 6px 12px; color: #bdb8b4; font-size: 10px; }
+
+    /* Work gallery */
+    .work-section { background: linear-gradient(180deg,rgba(255,106,0,.025),transparent); }
+    .category-block { margin-top: 58px; }
+    .category-heading { display: flex; align-items: center; gap: 16px; margin-bottom: 25px; }
+    .category-heading .round-icon { width: 54px; height: 54px; border: 1px solid var(--line-orange); border-radius: 50%; display: grid; place-items: center; color: var(--orange); font-size: 20px; box-shadow: 0 0 20px rgba(255,106,0,.09); }
+    .category-heading h3 { font-size: clamp(26px,4vw,42px); font-weight: 800; letter-spacing: -1px; }
+    .carousel { position: relative; }
+    .carousel-window { overflow: hidden; border-radius: 24px; }
+    .carousel-track { display: flex; transition: transform .65s cubic-bezier(.22,.7,.2,1); }
+    .project-slide { flex: 0 0 100%; padding: 0 3px; }
+    .project-frame { min-height: 300px; aspect-ratio: 16/8.5; border-radius: 25px; overflow: hidden; border: 1px solid rgba(255,106,0,.28); background: radial-gradient(circle at 50% 50%,rgba(255,106,0,.13),transparent 55%),#111; display: grid; place-items: center; }
+    .project-frame img, .project-frame video { width: 100%; height: 100%; object-fit: contain; }
+    .project-empty { text-align: center; padding: 35px; color: var(--muted); }
+    .project-empty i { display: block; font-size: 45px; color: var(--orange); margin-bottom: 17px; }
+    .project-empty strong { color: white; display: block; font-size: 18px; }
+    .project-caption { display: flex; align-items: center; justify-content: space-between; gap: 15px; padding: 17px 5px 0; }
+    .project-caption h4 { color: white; font-size: 16px; }
+    .project-caption p { color: var(--muted); font-size: 11px; }
+    .carousel-controls { display: flex; justify-content: center; align-items: center; gap: 18px; margin-top: 24px; }
+    .carousel-arrow { width: 47px; height: 47px; border: 1px solid var(--line-orange); border-radius: 50%; color: white; background: #17110d; transition: .2s; }
+    .carousel-arrow:hover { background: var(--orange); box-shadow: var(--shadow-orange); }
+    .carousel-dots { display: flex; gap: 9px; }
+    .carousel-dot { width: 9px; height: 9px; border-radius: 50%; border: 0; background: #4a3930; transition: .3s; }
+    .carousel-dot.active { width: 28px; border-radius: 99px; background: linear-gradient(90deg,var(--orange),var(--orange-2)); }
+
+    /* Process and pricing */
     .process-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
-    .process-card { padding: 27px; }
-    .step-number { font-size: 35px; font-weight: 700; color: var(--accent); opacity: .7; }
-    .process-card h3 { color: var(--heading); font-size: 15px; margin: 8px 0; }
-    .process-card p { font-size: 11px; }
+    .process-card { padding: 30px; }
+    .process-number { font-size: 43px; line-height: 1; color: var(--orange); font-weight: 800; opacity: .85; }
+    .process-card h3 { font-size: 18px; margin: 17px 0 9px; }
+    .process-card p { color: var(--muted); font-size: 12px; }
     .pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
-    .price-card { padding: 27px; position: relative; }
-    .price-card.popular { border-color: var(--accent); }
-    .popular-label { position: absolute; top: -13px; right: 20px; background: var(--accent); color: #17130A; font-size: 10px; padding: 5px 12px; border-radius: 30px; font-weight: 700; }
-    .price-card h3 { color: var(--heading); font-size: 17px; }
-    .price { color: var(--accent); font-size: 27px; font-weight: 700; margin: 12px 0; }
-    .price-card ul { list-style: none; margin: 20px 0; }
-    .price-card li { font-size: 11px; margin: 12px 0; }
-    .price-card li i { color: var(--accent); margin-right: 8px; }
-    .price-card .btn { width: 100%; }
-    .testimonials-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 18px; }
-    .testimonial { padding: 25px; }
-    .testimonial p { font-size: 12px; }
-    .testimonial h4 { color: var(--heading); margin-top: 18px; font-size: 13px; }
-    .faq-list { max-width: 850px; }
-    .faq-item { border-bottom: 1px solid var(--border); }
-    .faq-question { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 15px; padding: 21px 5px; border: 0; background: transparent; color: var(--heading); text-align: left; font-size: 13px; font-weight: 500; }
-    .faq-question i { color: var(--accent); transition: transform .25s; }
-    .faq-item.open .faq-question i { transform: rotate(45deg); }
-    .faq-answer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease; }
+    .price-card { padding: 30px; position: relative; }
+    .price-card.popular { border-color: rgba(255,106,0,.65); box-shadow: var(--shadow-orange); }
+    .popular-badge { position: absolute; top: -13px; right: 22px; border-radius: 99px; padding: 5px 13px; background: linear-gradient(90deg,var(--orange),var(--orange-2)); color: white; font-size: 10px; font-weight: 700; }
+    .price-card h3 { font-size: 18px; }
+    .price { color: var(--peach); font-size: 28px; font-weight: 800; margin: 12px 0 18px; }
+    .price-card ul { list-style: none; margin-bottom: 25px; }
+    .price-card li { color: var(--muted); font-size: 11px; margin: 12px 0; }
+    .price-card li i { color: var(--orange); margin-right: 9px; }
+    .price-card .btn { width: 100%; min-height: 48px; font-size: 12px; }
+
+    /* Testimonials */
+    .testimonials-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+    .testimonial-card { padding: 28px; }
+    .stars { color: var(--orange); letter-spacing: 4px; margin-bottom: 15px; }
+    .testimonial-card blockquote { color: #d1cdca; font-size: 13px; line-height: 1.9; }
+    .review-person { border-top: 1px solid var(--line); margin-top: 22px; padding-top: 17px; display: flex; align-items: center; gap: 12px; }
+    .review-avatar { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 50%; background: linear-gradient(145deg,#ff9a4a,#ff4a00); color: white; font-weight: 700; }
+    .review-person strong { display: block; font-size: 12px; }
+    .review-person small { color: var(--muted); font-size: 10px; }
+
+    /* FAQ */
+    .faq-list { max-width: 900px; margin: auto; display: grid; gap: 13px; }
+    .faq-item { background: linear-gradient(145deg,#1a1a1c,#111113); border: 1px solid rgba(255,255,255,.055); border-radius: 22px; overflow: hidden; }
+    .faq-question { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 22px 25px; border: 0; background: transparent; color: white; text-align: left; font-size: 15px; font-weight: 600; }
+    .faq-plus { flex: 0 0 43px; width: 43px; height: 43px; display: grid; place-items: center; border-radius: 50%; background: linear-gradient(145deg,#ff8a16,#ff4a00); color: white; font-size: 17px; box-shadow: 0 0 20px rgba(255,106,0,.18); transition: transform .3s; }
+    .faq-item.open .faq-plus { transform: rotate(45deg); }
+    .faq-answer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s ease; }
     .faq-answer > div { overflow: hidden; }
-    .faq-answer p { padding: 0 5px 18px; font-size: 12px; }
+    .faq-answer p { color: var(--muted); padding: 0 25px 22px; font-size: 13px; }
     .faq-item.open .faq-answer { grid-template-rows: 1fr; }
-    .contact-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 35px; }
-    .contact-info { display: flex; flex-direction: column; gap: 16px; }
-    .contact-item { display: flex; align-items: center; gap: 14px; padding: 16px; }
-    .contact-item i { color: var(--accent); font-size: 19px; width: 25px; text-align: center; }
-    .contact-item small { display: block; font-size: 10px; }
-    .contact-item strong { color: var(--heading); font-size: 12px; word-break: break-word; }
+
+    /* Contact CTA */
+    .cta-panel { text-align: center; padding: 72px 35px; position: relative; overflow: hidden; background: radial-gradient(circle at 50% 0%,rgba(255,106,0,.16),transparent 50%),linear-gradient(145deg,#1b1715,#101012); border: 1px solid rgba(255,106,0,.34); border-radius: 32px; box-shadow: 0 20px 60px rgba(255,80,0,.07); }
+    .cta-panel::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; box-shadow: inset 0 0 50px rgba(255,106,0,.045); }
+    .cta-panel > * { position: relative; }
+    .cta-panel h2 { font-size: clamp(34px,5vw,58px); line-height: 1.18; font-weight: 800; margin: 20px auto; max-width: 700px; letter-spacing: -1.8px; }
+    .cta-panel p { max-width: 720px; margin: 0 auto 26px; color: var(--muted); font-size: 15px; line-height: 1.9; }
+    .cta-topics { color: var(--peach); font-size: 13px; font-weight: 600; margin-bottom: 30px; }
+    .cta-panel .btn { min-width: min(100%,420px); }
+
+    /* Contact form */
+    .contact-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 24px; }
+    .contact-details { display: grid; gap: 13px; align-content: start; }
+    .contact-item { display: flex; align-items: center; gap: 15px; padding: 18px; }
+    .contact-item i { color: var(--orange); font-size: 20px; width: 26px; text-align: center; }
+    .contact-item small { display: block; color: var(--muted-2); font-size: 10px; }
+    .contact-item strong { color: white; font-size: 12px; overflow-wrap: anywhere; }
     .contact-form { padding: 28px; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .form-group { margin-bottom: 16px; }
-    .form-group label { display: block; color: var(--heading); font-size: 11px; margin-bottom: 7px; }
-    .form-control { width: 100%; padding: 12px 13px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; color: var(--heading); outline: none; font-size: 12px; }
-    .form-control:focus { border-color: var(--accent); }
-    textarea.form-control { resize: vertical; min-height: 100px; }
-    .contact-form .btn { width: 100%; }
-    .footer { border-top: 1px solid var(--border); padding: 45px 0 20px; }
-    .footer-main { display: flex; justify-content: space-between; align-items: center; gap: 30px; flex-wrap: wrap; padding-bottom: 28px; }
-    .footer p { font-size: 11px; max-width: 390px; margin-top: 8px; }
-    .footer-links { display: flex; flex-wrap: wrap; gap: 18px; }
-    .footer-links a { font-size: 11px; }
-    .social-links { display: flex; gap: 12px; margin-top: 17px; }
-    .social-links a { width: 37px; height: 37px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--border); color: var(--accent); transition: .2s; }
-    .social-links a:hover { background: var(--accent); color: #17130A; }
-    .copyright { border-top: 1px solid var(--border); padding-top: 18px; text-align: center; font-size: 10px; }
-    .lightbox { position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,.94); display: none; align-items: center; justify-content: center; padding: 25px; }
-    .lightbox.show { display: flex; }
-    .lightbox-content { width: min(900px,100%); text-align: center; }
-    .lightbox-content img, .lightbox-content video { max-height: 75vh; width: 100%; object-fit: contain; margin: auto; }
-    .lightbox-content h3 { color: white; margin: 14px 0; }
-    .lightbox-content p { font-size: 12px; }
-    .lightbox-close { position: absolute; top: 20px; right: 25px; color: white; border: none; background: transparent; font-size: 30px; }
-    .lightbox-project { margin-top: 12px; }
-    .popup { position: fixed; inset: 0; z-index: 3000; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,.8); padding: 20px; }
-    .popup.show { display: flex; }
-    .popup-box { background: var(--card); border: 1px solid var(--border); padding: 35px; border-radius: 16px; text-align: center; width: min(400px,100%); }
-    .popup-box i { font-size: 35px; color: var(--accent); margin-bottom: 15px; }
-    .popup-box h3 { color: var(--heading); margin-bottom: 8px; }
-    .popup-box p { font-size: 12px; margin-bottom: 20px; }
-    @media(max-width:900px) {
-      .nav-links { gap: 13px; }
-      .nav-links a { font-size: 10px; }
-      .nav-right .btn { font-size: 10px; }
-      .work-grid { grid-template-columns: repeat(2,1fr); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+    .form-group { margin-bottom: 15px; }
+    .form-group label { display: block; color: #e8e4e1; font-size: 11px; margin-bottom: 7px; }
+    .field { width: 100%; border: 1px solid rgba(255,255,255,.10); border-radius: 11px; padding: 13px 14px; outline: none; background: #0c0c0e; color: white; font-size: 12px; }
+    .field:focus { border-color: var(--orange); box-shadow: 0 0 0 3px rgba(255,106,0,.08); }
+    textarea.field { min-height: 110px; resize: vertical; }
+    .contact-form .btn { width: 100%; border: 0; }
+
+    /* Footer */
+    .footer { padding: 55px 0 22px; border-top: 1px solid var(--line); background: #070707; }
+    .footer-main { display: flex; justify-content: space-between; align-items: flex-start; gap: 35px; padding-bottom: 35px; }
+    .footer-brand p { color: var(--muted); font-size: 12px; max-width: 360px; margin-top: 10px; }
+    .footer-title { color: white; font-size: 17px; margin-bottom: 15px; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 15px 22px; }
+    .footer-links a { color: var(--muted); font-size: 11px; }
+    .footer-links a:hover { color: var(--peach); }
+    .socials { display: flex; gap: 12px; margin-top: 19px; }
+    .socials a { width: 45px; height: 45px; border: 1px solid rgba(255,106,0,.35); border-radius: 50%; display: grid; place-items: center; color: white; background: linear-gradient(145deg,#211812,#111); transition: .25s; }
+    .socials a:hover { transform: translateY(-4px); background: var(--orange); box-shadow: var(--shadow-orange); }
+    .copyright { border-top: 1px solid var(--line); padding-top: 19px; color: var(--muted-2); text-align: center; font-size: 10px; }
+
+    /* Modal */
+    .modal { position: fixed; inset: 0; z-index: 2000; display: none; align-items: center; justify-content: center; padding: 22px; background: rgba(0,0,0,.92); }
+    .modal.show { display: flex; }
+    .modal-box { width: min(900px,100%); text-align: center; }
+    .modal-box img, .modal-box video { max-height: 72vh; width: 100%; object-fit: contain; margin: auto; }
+    .modal-box h3 { margin-top: 14px; }
+    .modal-close { position: absolute; top: 20px; right: 24px; width: 45px; height: 45px; border: 1px solid var(--line); border-radius: 50%; color: white; background: #171717; font-size: 20px; }
+
+    /* Toast */
+    .toast { position: fixed; z-index: 3000; bottom: 25px; left: 50%; transform: translate(-50%,20px); opacity: 0; pointer-events: none; padding: 13px 20px; background: #1c1c1e; border: 1px solid var(--line-orange); border-radius: 12px; color: white; font-size: 12px; transition: .3s; box-shadow: var(--shadow-orange); }
+    .toast.show { opacity: 1; transform: translate(-50%,0); }
+
+    /* Scroll reveal */
+    .reveal { opacity: 0; transform: translateY(35px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: .10s; }
+    .delay-2 { transition-delay: .20s; }
+    .delay-3 { transition-delay: .30s; }
+    .back-top { position: fixed; right: 22px; bottom: 22px; z-index: 900; width: 45px; height: 45px; border: 1px solid var(--line-orange); border-radius: 50%; color: white; background: linear-gradient(145deg,#ff8a16,#ff4a00); box-shadow: var(--shadow-orange); opacity: 0; pointer-events: none; transform: translateY(12px); transition: .25s; }
+    .back-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+    @media (max-width: 900px) {
+      .nav-links { gap: 15px; }
+      .nav-links a { font-size: 11px; }
+      .stats-grid { grid-template-columns: repeat(2,1fr); }
       .pricing-grid { grid-template-columns: 1fr 1fr; }
     }
-    @media(max-width:680px) {
-      .section { padding: 65px 0; }
-      .nav-inner { min-height: 68px; }
+    @media (max-width: 680px) {
+      .section { padding: 78px 0; }
+      .nav-inner { min-height: 70px; }
       .menu-toggle { display: block; }
-      .nav-right > .btn { display: none; }
-      .nav-links { position: absolute; left: 0; right: 0; top: 68px; background: var(--bg); border-bottom: 1px solid var(--border); display: none; flex-direction: column; align-items: stretch; padding: 15px 5%; gap: 0; }
-      .nav-links.show { display: flex; }
+      .nav-actions > .btn { display: none; }
+      .nav-links { display: none; position: absolute; left: 0; right: 0; top: 70px; padding: 12px 5% 20px; background: rgba(8,8,8,.98); border-bottom: 1px solid var(--line-orange); flex-direction: column; align-items: stretch; gap: 0; }
+      .nav-links.open { display: flex; }
       .nav-links a { display: block; padding: 12px 0; font-size: 13px; }
-      .hero { padding-top: 65px; }
-      .hero h1 { letter-spacing: -.7px; }
-      .hero-description { font-size: 12px; }
-      .hero-buttons { gap: 8px; }
-      .hero-buttons .btn { flex: 1; padding: 12px 8px; font-size: 11px; }
-      .showcase-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 230px 135px 135px; gap: 10px; }
-      .showcase-item:first-child { grid-column: 1/-1; grid-row: auto; }
-      .showcase-item:last-child { grid-column: 1/-1; }
-      .stats-grid { grid-template-columns: 1fr 1fr; gap: 25px; }
-      .work-grid { grid-template-columns: 1fr; }
-      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 28px; }
-      .about-photo { max-width: 350px; margin: auto; width: 100%; aspect-ratio: 4/3; }
-      .services-grid, .process-grid, .pricing-grid, .testimonials-grid { grid-template-columns: 1fr; }
+      .hero { padding: 78px 0 35px; }
+      .hero h1 { letter-spacing: -1.8px; }
+      .hero-copy { font-size: 14px; }
+      .hero-actions { gap: 9px; }
+      .hero-actions .btn { min-width: 0; flex: 1; padding: 0 10px; min-height: 53px; font-size: 11px; gap: 7px; }
+      .hero-meta { gap: 10px 15px; }
+      .showcase { padding: 30px 0 60px; }
+      .showcase-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 240px 145px 145px; gap: 11px; }
+      .showcase-tile:first-child { grid-column: 1/-1; grid-row: auto; }
+      .showcase-tile:last-child { grid-column: 1/-1; }
+      .tile-icon { width: 57px; height: 57px; font-size: 21px; margin-bottom: 12px; }
+      .tile-placeholder strong { font-size: 12px; }
+      .stats { padding-bottom: 60px; }
+      .stats-grid { gap: 12px; }
+      .stat-card { min-height: 180px; padding: 25px 10px; }
+      .stat-icon { width: 57px; height: 57px; font-size: 20px; }
+      .stat-card h3 { font-size: 25px; }
+      .stat-card p { font-size: 11px; }
+      .about-panel { padding: 48px 18px 30px; }
+      .about-copy { font-size: 12px; }
+      .services-grid, .process-grid, .pricing-grid, .testimonials-grid, .contact-grid { grid-template-columns: 1fr; }
+      .service-card { padding: 26px; min-height: 0; }
+      .service-card h3 { font-size: 19px; }
+      .project-frame { min-height: 235px; aspect-ratio: 4/3; }
+      .project-caption { align-items: flex-start; flex-direction: column; }
+      .faq-question { padding: 17px; font-size: 13px; }
+      .faq-plus { flex-basis: 38px; width: 38px; height: 38px; }
+      .faq-answer p { padding: 0 17px 18px; font-size: 12px; }
+      .cta-panel { padding: 52px 20px; }
+      .cta-panel p { font-size: 13px; }
       .form-row { grid-template-columns: 1fr; gap: 0; }
       .contact-form { padding: 20px; }
-      .footer-main { flex-direction: column; align-items: flex-start; }
-      .footer-links { gap: 13px; }
+      .footer-main { flex-direction: column; }
+      .footer-links { gap: 13px 17px; }
     }
-    @media(max-width:360px) {
-      .hero-buttons .btn { font-size: 10px; padding: 11px 5px; }
-      .logo { font-size: 19px; }
+    @media (max-width: 360px) {
+      .brand { font-size: 23px; }
+      .hero-actions .btn { font-size: 10px; }
+      .showcase-grid { grid-template-rows: 210px 130px 130px; }
     }
   </style>
 </head>
+
 <body>
   <script>
-    // CONFIG: All editable website content is stored here.
+    /* =========================
+       CONFIG — EDIT YOUR CONTENT
+       ========================= */
     const CONFIG = {
-      // Your profession
+      // Your professional identity
       profession: "Teacher & Educational Content Creator",
       // Your full name
       name: "Sayeedur Rahman",
-      // Your professional display name
+      // Your public display name
       displayName: "Shahid Sir",
-      // Your coaching / professional brand
+      // Your coaching brand
       brand: "EZEE VISION CHAMPUA",
       // Your tagline
       tagline: "Making Learning Simple, Creative & Meaningful.",
-      // Website language
-      language: "English",
       // Browser tab title
       tabTitle: "Shahid Sir | Teacher & Educational Content Creator",
       // Your email address
       email: "creativesayeedd@gmail.com",
       // Your phone number
       phone: "+919124478453",
-      // WhatsApp contact link
+      // Your WhatsApp link
       whatsapp: "https://wa.me/919124478453",
       // Your location
       location: "Champua, Odisha, India",
-      // Profile photo URL (replace none when ready)
+      // Add your profile photo URL
       profilePhoto: "none",
-      // Logo URL (replace none when ready)
+      // Add your logo URL or keep none for text logo
       logo: "none",
-      // Favicon URL (replace none when ready)
+      // Add your favicon URL
       favicon: "none",
-      // Resume URL (replace none when ready)
+      // Add your resume URL later
       resume: "none",
-      // Teaching experience
+      // Your experience
       experience: "2 Years",
-      // Qualifications
+      // Your qualifications
       qualifications: ["MA in Islamic History", "D.El.Ed.", "CTET Paper I Qualified", "OTET Paper I Qualified", "Graduation (In Progress)"],
-      // Subjects taught
+      // Subjects you teach
       subjects: ["Social Science", "English", "Science", "Mathematics"],
-      // Classes taught
+      // Classes you teach
       classes: "Classes 4–10",
-      // Theme colors and font
-      theme: { mode: "dark", accent: "#D4A843", background: "#111114", card: "#1B1B20", heading: "#FFFFFF", body: "#B9B9C2", font: "Poppins" },
-      // Main hero heading
-      heroHeading: "Inspiring Minds Through Teaching & Creative Learning",
-      // Hero introduction
+      // Theme colors
+      theme: { background: "#080808", card: "#151517", orange: "#ff6a00", orange2: "#ff3d00", text: "#f8f7f5", muted: "#aaa8a6" },
+      // Hero heading
+      heroHeading: "Not Just Teaching. We Make Learning Meaningful.",
+      // Animated hero keywords
+      heroWords: ["Creative", "Interactive", "Meaningful", "Engaging"],
+      // Hero description
       heroText: "I am Sayeedur Rahman (Shahid Sir), a passionate teacher and educational content creator. I create engaging learning experiences, educational resources, digital worksheets and interactive study materials to make education simple and meaningful.",
-      // First hero button
-      heroButton1: { text: "Hire Me !!", link: "#contact" },
-      // Second hero button
-      heroButton2: { text: "Explore My Work", link: "#work" },
-      // Navbar call-to-action button
-      navbarButton: { text: "Hire Me", link: "#contact" },
-      // Exactly four showcase tiles; replace media none with image/video URLs
+      // Hero primary button
+      heroButton: { text: "Let's Connect", link: "#contact" },
+      // Hero secondary button
+      workButton: { text: "Explore My Work", link: "#work" },
+      // Four hero showcase tiles. Replace media with image/video URLs.
       showcase: [
-        { title: "Educational Notes & Worksheets", type: "image", media: "none", icon: "fa-book-open" },
-        { title: "Educational PPT & Presentations", type: "image", media: "none", icon: "fa-file-powerpoint" },
-        { title: "Teaching & Content Creation", type: "image", media: "none", icon: "fa-chalkboard-user" },
-        { title: "Professional Introduction", type: "image", media: "none", icon: "fa-user-tie" }
+        { title: "Educational Notes & Worksheets", icon: "fa-book-open", type: "image", media: "none" },
+        { title: "Educational PPT & Presentations", icon: "fa-file-powerpoint", type: "image", media: "none" },
+        { title: "Teaching & Content Creation", icon: "fa-chalkboard-user", type: "image", media: "none" },
+        { title: "Professional Introduction", icon: "fa-user-tie", type: "image", media: "none" }
       ],
-      // Add real statistics later; leave disabled until then
+      // Statistics stay hidden until real numbers are added.
       stats: { enabled: false, items: [] },
-      // Work gallery filters
-      categories: ["Educational Notes & Worksheets", "Educational PPT & Presentations", "Teaching & Content Creation"],
-      // Add each real project as one object in this array
-      works: [],
-      // About section heading
-      aboutHeading: "About Me",
-      // About section paragraphs
-      aboutText: [
+      // Your about section paragraphs
+      about: [
         "I am Sayeedur Rahman, professionally known as Shahid Sir. I am a teacher and educational content creator with a passion for making learning simple, creative and meaningful.",
         "My work focuses on teaching Social Science, English, Science and Mathematics, along with creating educational notes, worksheets, practice papers and classroom presentations.",
         "Through EZEE VISION CHAMPUA, I aim to support students with engaging teaching methods, useful learning resources and meaningful educational experiences."
       ],
-      // Professional tools
+      // Tools you use
       tools: ["PowerPoint", "ChatGPT", "AI Tools", "CapCut"],
       // Professional skills
       skills: ["Teaching & Explanation", "Educational Content Creation", "Worksheet & Notes Design", "Presentation Design", "Video Content Creation"],
-      // Services offered
+      // Services
       services: [
-        { icon: "fa-book-open", title: "Educational Content Creation", description: "Creating useful educational notes, worksheets, daily practice papers and study materials for students." },
-        { icon: "fa-file-powerpoint", title: "PowerPoint Presentations", description: "Designing clear, engaging and visually organised educational presentations based on learning topics." },
-        { icon: "fa-video", title: "Educational Video Creation", description: "Creating educational video lessons and learning content to make difficult topics easier to understand." },
-        { icon: "fa-chalkboard-user", title: "Teaching at EZEE VISION CHAMPUA", description: "Supporting students through classroom teaching, subject explanations and structured learning activities." }
+        { icon: "fa-book-open", title: "Educational Content Creation", description: "Creating useful educational notes, worksheets, daily practice papers and study materials for students.", tags: ["Study Notes", "Worksheets", "DPP"] },
+        { icon: "fa-file-powerpoint", title: "PowerPoint Presentations", description: "Designing clear, engaging and visually organised educational presentations based on learning topics.", tags: ["NCERT Slides", "Visual Learning", "Diagrams"] },
+        { icon: "fa-video", title: "Educational Video Creation", description: "Creating educational video lessons and learning content to make difficult topics easier to understand.", tags: ["Video Lessons", "Explainers", "YouTube"] },
+        { icon: "fa-chalkboard-user", title: "Teaching at EZEE VISION CHAMPUA", description: "Supporting students through classroom teaching, subject explanations and structured learning activities.", tags: ["SST", "English", "Classes 4–10"] }
       ],
-      // Three steps in your work process
+      // Your work process
       steps: [
-        { number: "01", title: "Understand Requirements", description: "First, I understand the learning goals, subject, topic and requirements." },
-        { number: "02", title: "Create Educational Content", description: "I prepare organised, engaging and easy-to-understand educational materials." },
-        { number: "03", title: "Review & Deliver", description: "I review the work carefully and deliver the final educational content." }
+        { title: "Understand Requirements", description: "First, I understand the learning goals, subject, topic and requirements." },
+        { title: "Create Educational Content", description: "I prepare organised, engaging and easy-to-understand educational materials." },
+        { title: "Review & Deliver", description: "I review the work carefully and deliver the final educational content." }
       ],
-      // Pricing section heading
-      pricingHeading: "Free Learning Resources & Paid Services",
-      // Three pricing / service cards
+      // Pricing plans
       plans: [
         { name: "Free Learning", price: "FREE", popular: false, features: ["Selected free educational resources", "Learning support materials", "Educational content access", "Student-focused resources"], button: "Explore Resources", link: "#work" },
         { name: "Custom Content", price: "Contact Me", popular: true, features: ["Custom worksheets", "Educational notes", "Practice papers", "Personalised content requirements"], button: "Get Started", link: "#contact" },
         { name: "Creative Learning", price: "Contact Me", popular: false, features: ["Educational presentations", "Video lesson creation", "Visual learning content", "Project-based discussion"], button: "Contact Me", link: "#contact" }
       ],
-      // Add genuine testimonials here later
+      // Add real testimonials later. Keep empty until then.
       testimonials: [],
-      // Frequently asked questions
+      // FAQ questions and answers
       faqs: [
         { question: "What subjects do you teach?", answer: "I teach Social Science, English, Science and Mathematics for students in Classes 4–10." },
         { question: "How can I access free educational resources?", answer: "You can explore the available educational resources through the Work section and contact me for further information." },
@@ -333,394 +482,545 @@ HOW TO CUSTOMIZE:
         { question: "How can I contact you for paid services?", answer: "You can contact me through the enquiry form, WhatsApp or email to discuss your requirements and pricing." }
       ],
       // Contact form heading
-      formTitle: "Let's Work Together",
-      // Contact form description
-      formText: "Have a question or need educational content? Send me your details and requirements.",
-      // Contact form fields
-      formFields: ["Full Name", "WhatsApp Number", "Email Address", "Address"],
-      // Contact form dropdown choices
-      formOptions: ["Educational Content", "PowerPoint Presentation", "Educational Video", "Teaching at EZEE VISION CHAMPUA", "Other"],
-      // Form method: mailto opens the visitor's email application
+      contactTitle: "Have an Idea? Let's Make It Meaningful.",
+      // Contact form introduction
+      contactText: "Whether you need educational content, a presentation or learning support, tell me what you have in mind. Let's work together.",
+      // Contact dropdown choices
+      enquiryOptions: ["Educational Content", "PowerPoint Presentation", "Educational Video", "Teaching at EZEE VISION CHAMPUA", "Other"],
+      // Contact form uses mailto because no form endpoint has been supplied.
       formMethod: "mailto",
-      // Form submit button label
-      formButton: "Send Enquiry",
-      // Confirmation popup text
-      popupTitle: "Thank You!",
-      popupMessage: "Your email application will open with your enquiry details. Please send the email to complete your enquiry.",
-      // Social media URLs; use none to hide an icon
+      // Social media URLs. Use none to hide a network.
       social: {
         instagram: "https://www.instagram.com/ezee.shahid?mdxt=MXZ4bHhtZ3dsc2x3bQ==",
         youtube: "https://youtube.com/@cbseboardmentor?si=gQGQhqWBOEFnEB2g",
         facebook: "none",
         linkedin: "none",
-        twitter: "none",
-        pinterest: "none",
-        behance: "none",
-        dribbble: "none"
+        twitter: "none"
       }
     };
 
-    // Apply the selected theme and page title
-    document.documentElement.style.setProperty("--accent", CONFIG.theme.accent);
+    document.title = CONFIG.tabTitle;
     document.documentElement.style.setProperty("--bg", CONFIG.theme.background);
     document.documentElement.style.setProperty("--card", CONFIG.theme.card);
-    document.documentElement.style.setProperty("--heading", CONFIG.theme.heading);
-    document.documentElement.style.setProperty("--body", CONFIG.theme.body);
-    document.documentElement.style.setProperty("--font", `'${CONFIG.theme.font}', sans-serif`);
-    document.title = CONFIG.tabTitle;
+    document.documentElement.style.setProperty("--orange", CONFIG.theme.orange);
+    document.documentElement.style.setProperty("--orange-2", CONFIG.theme.orange2);
+    document.documentElement.style.setProperty("--text", CONFIG.theme.text);
+    document.documentElement.style.setProperty("--muted", CONFIG.theme.muted);
     if (CONFIG.favicon && CONFIG.favicon !== "none") {
-      const faviconLink = document.createElement("link");
-      faviconLink.rel = "icon";
-      faviconLink.href = CONFIG.favicon;
-      document.head.appendChild(faviconLink);
+      const icon = document.createElement("link");
+      icon.rel = "icon"; icon.href = CONFIG.favicon; document.head.appendChild(icon);
     }
   </script>
 
+  <!-- NAVIGATION -->
   <header class="navbar">
     <div class="container nav-inner">
-      <a href="#home" class="logo" id="navLogo">Shahid <span>Sir.</span></a>
+      <a href="#home" class="brand" id="brandLogo">Shahid<span>.</span></a>
       <nav aria-label="Main navigation">
         <ul class="nav-links" id="navLinks">
-          <li><a href="#home">Home</a></li><li><a href="#work">Work</a></li><li><a href="#about">About</a></li><li><a href="#services">Services</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#contact">Contact</a></li>
+          <li><a href="#home">Home</a></li><li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li><li><a href="#work">Work</a></li>
+          <li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
-      <div class="nav-right">
-        <a class="btn btn-primary" id="navButton" href="#contact">Hire Me</a>
-        <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+      <div class="nav-actions">
+        <a href="#contact" class="btn btn-primary">Let's Connect <i class="fa-solid fa-arrow-right"></i></a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
       </div>
     </div>
   </header>
 
   <main>
+    <!-- HERO -->
     <section class="hero" id="home">
-      <div class="container">
-        <div class="hero-label"><i class="fa-solid fa-graduation-cap"></i><span id="professionLabel"></span></div>
-        <h1 id="heroHeading"></h1>
-        <p class="hero-description" id="heroText"></p>
-        <div class="hero-buttons"><a class="btn btn-primary" id="heroButton1" href="#contact"></a><a class="btn btn-outline" id="heroButton2" href="#work"></a></div>
-      </div>
-    </section>
-
-    <section class="showcase" aria-label="Featured educational work"><div class="container"><div class="showcase-grid" id="showcaseGrid"></div></div></section>
-
-    <section class="stats" id="statsSection" hidden><div class="container"><div class="stats-grid" id="statsGrid"></div></div></section>
-
-    <section class="section" id="work">
-      <div class="container">
-        <p class="eyebrow">My Portfolio</p><h2 class="section-title">Selected <span class="accent">Work</span></h2>
-        <p class="section-subtitle">A collection of educational materials, presentations and creative teaching content.</p>
-        <div class="filters" id="filters"></div><div class="work-grid" id="workGrid"></div>
-        <button class="btn btn-outline load-more" id="loadMore" hidden>Load More</button>
-      </div>
-    </section>
-
-    <section class="section" id="about">
-      <div class="container about-grid">
-        <div class="about-photo" id="aboutPhoto"></div>
-        <div class="about-text">
-          <p class="eyebrow">Get to Know Me</p><h2 class="section-title" id="aboutHeading"></h2>
-          <div id="aboutDescription"></div><div class="info-list" id="aboutInfo"></div>
-          <h3 style="color:var(--heading);font-size:14px;margin-top:25px;">Tools I Use</h3><div class="chips" id="toolsList"></div>
-          <h3 style="color:var(--heading);font-size:14px;margin-top:25px;">Professional Skills</h3><div class="chips" id="skillsList"></div>
-          <a class="btn btn-outline" id="resumeButton" href="#" style="margin-top:25px;" hidden><i class="fa-solid fa-download"></i> Download Resume</a>
+      <div class="container hero-content">
+        <span class="eyebrow reveal">Educator · Creator · Lifelong Learner</span>
+        <h1 class="reveal delay-1" id="heroHeading"></h1>
+        <p class="hero-copy reveal delay-2" id="heroText"></p>
+        <div class="hero-actions reveal delay-3">
+          <a class="btn btn-primary" id="heroPrimary" href="#contact"></a>
+          <a class="btn btn-outline" id="heroSecondary" href="#work"></a>
+        </div>
+        <div class="hero-meta reveal delay-3">
+          <span><i class="fa-solid fa-location-dot"></i><span id="heroLocation"></span></span>
+          <span><i class="fa-solid fa-graduation-cap"></i> Classes 4–10</span>
+          <span><i class="fa-solid fa-book-open"></i> Learning made meaningful</span>
         </div>
       </div>
     </section>
 
+    <!-- FOUR TILE SHOWCASE -->
+    <section class="showcase">
+      <div class="container">
+        <div class="showcase-grid" id="showcaseGrid"></div>
+      </div>
+    </section>
+
+    <!-- OPTIONAL REAL STATS -->
+    <section class="stats" id="statsSection" hidden>
+      <div class="container stats-grid" id="statsGrid"></div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section about-section" id="about">
+      <div class="container">
+        <div class="about-panel surface reveal">
+          <span class="eyebrow"><i class="fa-regular fa-user"></i> About Me</span>
+          <div class="about-avatar" id="aboutAvatar"></div>
+          <h2 class="about-name">Hi, I'm <span class="gradient-text" id="aboutName"></span></h2>
+          <div class="about-role" id="aboutRole"></div>
+          <div class="about-copy" id="aboutCopy"></div>
+          <div class="about-facts" id="aboutFacts"></div>
+          <div class="skills-track">
+            <div class="skills-marquee" id="skillsMarquee"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
     <section class="section" id="services">
-      <div class="container"><p class="eyebrow">What I Offer</p><h2 class="section-title">My <span class="accent">Services</span></h2>
-        <p class="section-subtitle">Educational support and creative services designed to make learning more effective.</p><div class="services-grid" id="servicesGrid"></div>
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">What I Do</span>
+          <h2 class="section-title">My <span class="gradient-text">Services</span></h2>
+          <p class="section-desc">Creative educational support, meaningful learning resources and classroom experiences designed around students.</p>
+        </div>
+        <div class="services-grid" id="servicesGrid"></div>
       </div>
     </section>
 
+    <!-- WORK CAROUSELS -->
+    <section class="section work-section" id="work">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Selected Work</span>
+          <h2 class="section-title">Explore My <span class="gradient-text">Creative Work</span></h2>
+          <p class="section-desc">A growing collection of educational notes, classroom presentations and teaching content. Real project samples will be added here.</p>
+        </div>
+        <div id="workCategories"></div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
     <section class="section" id="process">
-      <div class="container"><p class="eyebrow">My Approach</p><h2 class="section-title">How I <span class="accent">Work</span></h2>
-        <p class="section-subtitle">A simple and organised process from understanding your needs to delivering the work.</p><div class="process-grid" id="processGrid"></div>
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Simple Process</span>
+          <h2 class="section-title">How I <span class="gradient-text">Work</span></h2>
+          <p class="section-desc">A thoughtful process that keeps every educational project clear, organised and focused on learning.</p>
+        </div>
+        <div class="process-grid" id="processGrid"></div>
       </div>
     </section>
 
+    <!-- PRICING -->
     <section class="section" id="pricing">
-      <div class="container"><p class="eyebrow">Plans & Services</p><h2 class="section-title" id="pricingHeading"></h2>
-        <p class="section-subtitle">Explore free learning resources and contact me for customised educational services.</p><div class="pricing-grid" id="pricingGrid"></div>
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Learning & Services</span>
+          <h2 class="section-title">Free Resources <span class="gradient-text">& Paid Services</span></h2>
+          <p class="section-desc">Explore selected free learning materials or contact me to discuss customised educational work.</p>
+        </div>
+        <div class="pricing-grid" id="pricingGrid"></div>
       </div>
     </section>
 
+    <!-- TESTIMONIALS: only real reviews -->
     <section class="section" id="testimonials" hidden>
-      <div class="container"><p class="eyebrow">Feedback</p><h2 class="section-title">Client <span class="accent">Words</span></h2><div class="testimonials-grid" id="testimonialsGrid"></div></div>
-    </section>
-
-    <section class="section" id="faq">
-      <div class="container"><p class="eyebrow">Need Help?</p><h2 class="section-title">Frequently Asked <span class="accent">Questions</span></h2>
-        <p class="section-subtitle">Some useful answers about my teaching and educational services.</p><div class="faq-list" id="faqList"></div>
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Kind Words</span>
+          <h2 class="section-title">Student & Parent <span class="gradient-text">Reviews</span></h2>
+        </div>
+        <div class="testimonials-grid" id="testimonialsGrid"></div>
       </div>
     </section>
 
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">FAQ</span>
+          <h2 class="section-title">Frequently Asked <span class="gradient-text">Questions</span></h2>
+          <p class="section-desc">Have questions about teaching, educational materials or working together? Here are a few helpful answers.</p>
+        </div>
+        <div class="faq-list" id="faqList"></div>
+      </div>
+    </section>
+
+    <!-- LARGE CTA -->
+    <section class="section" style="padding-top:35px;padding-bottom:55px">
+      <div class="container">
+        <div class="cta-panel reveal">
+          <span class="eyebrow">Let's Learn & Create Together</span>
+          <h2>Have an Idea?<br><span class="gradient-text">Let's Make It Meaningful.</span></h2>
+          <p>Whether you need educational content, a presentation or learning support, let's turn your idea into something useful, clear and engaging.</p>
+          <div class="cta-topics">Educational Content · Teaching Presentations · Learning Resources</div>
+          <a href="#contact" class="btn btn-primary">Get Started Now <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
     <section class="section" id="contact">
-      <div class="container"><p class="eyebrow">Get in Touch</p><h2 class="section-title" id="formTitle"></h2><p class="section-subtitle" id="formText"></p>
-        <div class="contact-grid"><div class="contact-info" id="contactInfo"></div>
-          <form class="contact-form card" id="contactForm"><div id="formInputs"></div>
-            <div class="form-group"><label for="serviceSelect">What do you need?</label><select class="form-control" id="serviceSelect" required></select></div>
-            <div class="form-group"><label for="message">Your Message (Optional)</label><textarea class="form-control" id="message" placeholder="Write your requirements here..."></textarea></div>
-            <button type="submit" class="btn btn-primary" id="formSubmit">Send Enquiry <i class="fa-solid fa-arrow-right"></i></button>
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Get In Touch</span>
+          <h2 class="section-title" id="contactTitle"></h2>
+          <p class="section-desc" id="contactText"></p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-details reveal" id="contactDetails"></div>
+          <form class="contact-form surface reveal delay-1" id="contactForm">
+            <div class="form-row">
+              <div class="form-group"><label for="fullName">Full Name</label><input class="field" id="fullName" name="Full Name" required placeholder="Your name"></div>
+              <div class="form-group"><label for="whatsappNumber">WhatsApp Number</label><input class="field" id="whatsappNumber" name="WhatsApp Number" placeholder="Your number"></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label for="emailAddress">Email Address</label><input class="field" id="emailAddress" name="Email Address" type="email" placeholder="Your email"></div>
+              <div class="form-group"><label for="address">Address</label><input class="field" id="address" name="Address" placeholder="Your address"></div>
+            </div>
+            <div class="form-group"><label for="enquiryType">What do you need?</label><select class="field" id="enquiryType" required></select></div>
+            <div class="form-group"><label for="message">Your Message</label><textarea class="field" id="message" placeholder="Tell me a little about your requirements..."></textarea></div>
+            <button class="btn btn-primary" type="submit" id="submitButton">Send Enquiry <i class="fa-solid fa-arrow-right"></i></button>
           </form>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer"><div class="container"><div class="footer-main">
-    <div><a href="#home" class="logo">Shahid <span>Sir.</span></a><p id="footerTagline"></p><div class="social-links" id="socialLinks"></div></div>
-    <div class="footer-links"><a href="#home">Home</a><a href="#work">Work</a><a href="#about">About</a><a href="#services">Services</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a></div>
-  </div><div class="copyright" id="copyright"></div></div></footer>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <a class="brand" href="#home">Shahid<span>.</span></a>
+          <p id="footerTagline"></p>
+          <div class="socials" id="socials"></div>
+        </div>
+        <div>
+          <h3 class="footer-title">Quick Links</h3>
+          <div class="footer-links">
+            <a href="#home">Home</a><a href="#about">About</a><a href="#services">Services</a>
+            <a href="#work">Work</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a>
+          </div>
+        </div>
+      </div>
+      <div class="copyright" id="copyright"></div>
+    </div>
+  </footer>
 
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Project preview">
-    <button class="lightbox-close" id="lightboxClose" aria-label="Close preview"><i class="fa-solid fa-xmark"></i></button><div class="lightbox-content" id="lightboxContent"></div>
+  <!-- PROJECT LIGHTBOX -->
+  <div class="modal" id="projectModal" role="dialog" aria-modal="true" aria-label="Project preview">
+    <button class="modal-close" id="modalClose" aria-label="Close preview"><i class="fa-solid fa-xmark"></i></button>
+    <div class="modal-box" id="modalContent"></div>
   </div>
-  <div class="popup" id="successPopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle"><div class="popup-box">
-    <i class="fa-solid fa-circle-check"></i><h3 id="popupTitle"></h3><p id="popupMessage"></p><button class="btn btn-primary" id="popupClose">Close</button>
-  </div></div>
+  <div class="toast" id="toast" role="status"></div>
+  <button class="back-top" id="backTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
 
   <script>
-    // Escape text before inserting user-editable content into HTML.
-    function escapeHTML(value) {
-      return String(value ?? "").replace(/[&<>"']/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" })[char]);
-    }
-    // Treat empty values and the word none as missing.
-    function isAvailable(value) { return value && value !== "none" && String(value).trim() !== ""; }
-    // Apply navigation and hero content.
-    document.getElementById("professionLabel").textContent = CONFIG.profession;
-    const heroWords = escapeHTML(CONFIG.heroHeading).replace("Creative Learning", "<span>Creative Learning</span>");
-    document.getElementById("heroHeading").innerHTML = heroWords;
-    document.getElementById("heroText").textContent = CONFIG.heroText;
-    document.getElementById("heroButton1").textContent = CONFIG.heroButton1.text;
-    document.getElementById("heroButton1").href = CONFIG.heroButton1.link;
-    document.getElementById("heroButton2").textContent = CONFIG.heroButton2.text;
-    document.getElementById("heroButton2").href = CONFIG.heroButton2.link;
-    document.getElementById("navButton").textContent = CONFIG.navbarButton.text;
-    document.getElementById("navButton").href = CONFIG.navbarButton.link;
-    // Use a text logo unless an image logo is supplied.
-    document.getElementById("navLogo").innerHTML = isAvailable(CONFIG.logo)
-      ? `<img src="${escapeHTML(CONFIG.logo)}" alt="${escapeHTML(CONFIG.brand)} logo">`
-      : `${escapeHTML(CONFIG.displayName.replace(/\s+Sir$/i, ""))} <span>Sir.</span>`;
+    // Escape text before inserting it into HTML.
+    const esc = value => String(value ?? "").replace(/[&<>"']/g, ch => ({
+      "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
+    })[ch]);
+    const available = value => value && value !== "none" && String(value).trim() !== "";
 
-    // Mobile navigation menu.
+    // Header and hero content.
+    const brandLogo = document.getElementById("brandLogo");
+    brandLogo.innerHTML = available(CONFIG.logo)
+      ? `<img src="${esc(CONFIG.logo)}" alt="${esc(CONFIG.brand)} logo" style="height:42px;width:auto">`
+      : `${esc(CONFIG.displayName.replace(" Sir",""))}<span>.</span>`;
+
+    const heroHeading = document.getElementById("heroHeading");
+    const headingParts = CONFIG.heroHeading.split(" ");
+    heroHeading.innerHTML = `${esc(headingParts.slice(0,2).join(" "))} <span class="word" id="rotatingWord">${esc(CONFIG.heroWords[0])}</span><br>${esc(headingParts.slice(2).join(" "))}`;
+
+    // Rotate the accent word in the hero heading.
+    let wordIndex = 0;
+    if (CONFIG.heroWords.length > 1) {
+      setInterval(() => {
+        const word = document.getElementById("rotatingWord");
+        if (!word) return;
+        word.style.opacity = "0";
+        word.style.filter = "blur(5px)";
+        setTimeout(() => {
+          wordIndex = (wordIndex + 1) % CONFIG.heroWords.length;
+          word.textContent = CONFIG.heroWords[wordIndex];
+          word.style.opacity = "1";
+          word.style.filter = "blur(0)";
+        }, 240);
+      }, 2400);
+    }
+    document.getElementById("heroText").textContent = CONFIG.heroText;
+    document.getElementById("heroPrimary").innerHTML = `${esc(CONFIG.heroButton.text)} <i class="fa-solid fa-arrow-right"></i>`;
+    document.getElementById("heroPrimary").href = CONFIG.heroButton.link;
+    document.getElementById("heroSecondary").innerHTML = `${esc(CONFIG.workButton.text)} <i class="fa-solid fa-arrow-down"></i>`;
+    document.getElementById("heroSecondary").href = CONFIG.workButton.link;
+    document.getElementById("heroLocation").textContent = CONFIG.location;
+
+    // Mobile navigation.
     const menuToggle = document.getElementById("menuToggle");
     const navLinks = document.getElementById("navLinks");
     menuToggle.addEventListener("click", () => {
-      const open = navLinks.classList.toggle("show");
-      menuToggle.innerHTML = open ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+      const open = navLinks.classList.toggle("open");
       menuToggle.setAttribute("aria-expanded", String(open));
+      menuToggle.innerHTML = open ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
     });
     navLinks.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
-      navLinks.classList.remove("show"); menuToggle.innerHTML = '<i class="fa-solid fa-bars"></i>'; menuToggle.setAttribute("aria-expanded", "false");
+      navLinks.classList.remove("open");
+      menuToggle.setAttribute("aria-expanded","false");
+      menuToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
     }));
 
-    // Render the four hero showcase tiles.
+    // Four tile hero showcase.
     const showcaseGrid = document.getElementById("showcaseGrid");
-    CONFIG.showcase.slice(0, 4).forEach(item => {
-      const tile = document.createElement("div"); tile.className = "showcase-item";
-      if (isAvailable(item.media)) {
+    CONFIG.showcase.slice(0,4).forEach((item, index) => {
+      const tile = document.createElement("div");
+      tile.className = `showcase-tile reveal ${index ? "delay-" + Math.min(index,3) : ""}`;
+      if (available(item.media)) {
         tile.innerHTML = item.type === "video"
-          ? `<video src="${escapeHTML(item.media)}" autoplay muted loop playsinline aria-label="${escapeHTML(item.title)}"></video>`
-          : `<img src="${escapeHTML(item.media)}" loading="lazy" alt="${escapeHTML(item.title)}">`;
+          ? `<video src="${esc(item.media)}" autoplay muted loop playsinline aria-label="${esc(item.title)}"></video>`
+          : `<img src="${esc(item.media)}" loading="lazy" alt="${esc(item.title)}">`;
       } else {
-        tile.innerHTML = `<div class="placeholder"><i class="fa-solid ${escapeHTML(item.icon)}"></i><strong>${escapeHTML(item.title)}</strong><small>Portfolio showcase</small></div>`;
+        tile.innerHTML = `<div class="tile-placeholder"><span class="tile-icon"><i class="fa-solid ${esc(item.icon)}"></i></span><strong>${esc(item.title)}</strong><small>Portfolio preview will be added soon</small></div>`;
       }
       showcaseGrid.appendChild(tile);
     });
 
-    // Display statistics only after real numbers have been added.
+    // Statistics: never invent numbers; render only when real values are supplied.
     if (CONFIG.stats.enabled && CONFIG.stats.items.length) {
-      document.getElementById("statsSection").hidden = false;
-      document.getElementById("statsGrid").innerHTML = CONFIG.stats.items.map(item =>
-        `<div class="stat"><i class="fa-solid ${escapeHTML(item.icon)}"></i><h3>${escapeHTML(item.number)}</h3><p>${escapeHTML(item.label)}</p></div>`
-      ).join("");
+      const section = document.getElementById("statsSection");
+      const grid = document.getElementById("statsGrid");
+      section.hidden = false;
+      CONFIG.stats.items.forEach((item, i) => {
+        const card = document.createElement("div");
+        card.className = `stat-card reveal delay-${i % 4}`;
+        card.innerHTML = `<span class="stat-icon"><i class="fa-solid ${esc(item.icon || "fa-star")}"></i></span><h3>${esc(item.number)}</h3><p>${esc(item.label)}</p>`;
+        grid.appendChild(card);
+      });
     }
 
-    // Work gallery: filter buttons, six initial projects, and load more.
-    let activeFilter = "All"; let visibleWorks = 6;
-    const workGrid = document.getElementById("workGrid");
-    const filters = document.getElementById("filters");
-    const loadMore = document.getElementById("loadMore");
-    ["All", ...CONFIG.categories].forEach(category => {
-      const button = document.createElement("button");
-      button.className = "filter-btn" + (category === "All" ? " active" : ""); button.textContent = category;
-      button.addEventListener("click", () => {
-        activeFilter = category; visibleWorks = 6;
-        filters.querySelectorAll("button").forEach(btn => btn.classList.toggle("active", btn === button));
-        renderWorks();
+    // About section.
+    document.getElementById("aboutName").textContent = CONFIG.displayName;
+    document.getElementById("aboutRole").textContent = CONFIG.profession;
+    const avatar = document.getElementById("aboutAvatar");
+    avatar.innerHTML = available(CONFIG.profilePhoto)
+      ? `<img src="${esc(CONFIG.profilePhoto)}" alt="${esc(CONFIG.displayName)}" loading="lazy">`
+      : `<div class="avatar-placeholder"><i class="fa-solid fa-user-tie"></i></div>`;
+    document.getElementById("aboutCopy").innerHTML = CONFIG.about.map(p => `<p>${esc(p)}</p>`).join("");
+    const facts = [
+      ["fa-briefcase", CONFIG.experience],
+      ["fa-book-open", CONFIG.subjects.join(" · ")],
+      ["fa-school", CONFIG.classes],
+      ["fa-location-dot", CONFIG.location],
+      ["fa-building", CONFIG.brand]
+    ];
+    document.getElementById("aboutFacts").innerHTML = facts.map(([icon, text]) => `<span class="fact-chip"><i class="fa-solid ${icon}"></i>${esc(text)}</span>`).join("");
+    const skillItems = [...CONFIG.skills, ...CONFIG.tools];
+    const marqueeContent = skillItems.map(s => `<span class="skill-chip"><i class="fa-solid fa-circle-check"></i>${esc(s)}</span>`).join("");
+    document.getElementById("skillsMarquee").innerHTML = marqueeContent + marqueeContent;
+
+    // Services.
+    document.getElementById("servicesGrid").innerHTML = CONFIG.services.map((service, i) => `
+      <article class="service-card surface reveal delay-${i % 3}">
+        <div class="service-icon"><i class="fa-solid ${esc(service.icon)}"></i></div>
+        <h3>${esc(service.title)}</h3>
+        <p>${esc(service.description)}</p>
+        <div class="service-tags">${service.tags.map(tag => `<span>${esc(tag)}</span>`).join("")}</div>
+      </article>`).join("");
+
+    // Work carousels: empty categories display honest placeholders until real projects are added.
+    const workCategories = [
+      { title: "Educational Notes & Worksheets", icon: "fa-book-open", key: "Educational Notes & Worksheets" },
+      { title: "Educational PPT & Presentations", icon: "fa-file-powerpoint", key: "Educational PPT & Presentations" },
+      { title: "Teaching & Content Creation", icon: "fa-chalkboard-user", key: "Teaching & Content Creation" }
+    ];
+    const workRoot = document.getElementById("workCategories");
+    const projectModal = document.getElementById("projectModal");
+    const modalContent = document.getElementById("modalContent");
+
+    workCategories.forEach((category, categoryIndex) => {
+      const projects = CONFIG.projects ? CONFIG.projects.filter(p => p.category === category.key) : [];
+      const section = document.createElement("div");
+      section.className = "category-block reveal";
+      const slides = projects.length ? projects : [{ title: "Project samples coming soon", description: "Your real educational work will be displayed here.", type: "placeholder", media: "none" }];
+      section.innerHTML = `
+        <div class="category-heading"><span class="round-icon"><i class="fa-solid ${category.icon}"></i></span><h3>${category.title}</h3></div>
+        <div class="carousel">
+          <div class="carousel-window"><div class="carousel-track">
+            ${slides.map((p, i) => `
+              <div class="project-slide">
+                <div class="project-frame" ${p.type !== "placeholder" ? 'data-project-index="' + i + '"' : ""}>
+                  ${available(p.media) ? (p.type === "video"
+                    ? `<video src="${esc(p.media)}" autoplay muted loop playsinline></video>`
+                    : `<img src="${esc(p.media)}" loading="lazy" alt="${esc(p.title)}">`)
+                    : `<div class="project-empty"><i class="fa-regular fa-images"></i><strong>${esc(p.title)}</strong><span>${esc(p.description || "Add your project preview in CONFIG.")}</span></div>`}
+                </div>
+                <div class="project-caption"><div><h4>${esc(p.title)}</h4><p>${esc(p.description || category.title)}</p></div>
+                  ${available(p.projectLink) ? `<a class="btn btn-outline" href="${esc(p.projectLink)}" target="_blank" rel="noopener">View Project <i class="fa-solid fa-arrow-up-right-from-square"></i></a>` : ""}
+                </div>
+              </div>`).join("")}
+          </div></div>
+          <div class="carousel-controls">
+            <button class="carousel-arrow prev" aria-label="Previous project"><i class="fa-solid fa-chevron-left"></i></button>
+            <div class="carousel-dots">${slides.map((_, i) => `<button class="carousel-dot ${i===0?"active":""}" aria-label="Go to project ${i+1}"></button>`).join("")}</div>
+            <button class="carousel-arrow next" aria-label="Next project"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </div>`;
+      workRoot.appendChild(section);
+
+      const track = section.querySelector(".carousel-track");
+      const dots = [...section.querySelectorAll(".carousel-dot")];
+      let current = 0;
+      const go = next => {
+        current = (next + slides.length) % slides.length;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        dots.forEach((dot, i) => dot.classList.toggle("active", i === current));
+      };
+      section.querySelector(".prev").addEventListener("click", () => go(current - 1));
+      section.querySelector(".next").addEventListener("click", () => go(current + 1));
+      dots.forEach((dot, i) => dot.addEventListener("click", () => go(i)));
+      section.querySelectorAll(".project-frame[data-project-index]").forEach(frame => {
+        frame.addEventListener("click", () => {
+          const p = slides[Number(frame.dataset.projectIndex)];
+          modalContent.innerHTML = `${p.type === "video" ? `<video src="${esc(p.media)}" controls autoplay playsinline></video>` : `<img src="${esc(p.media)}" alt="${esc(p.title)}">`}<h3>${esc(p.title)}</h3><p>${esc(p.description || "")}</p>`;
+          projectModal.classList.add("show");
+          document.body.style.overflow = "hidden";
+        });
       });
-      filters.appendChild(button);
     });
-    function renderWorks() {
-      const filtered = CONFIG.works.filter(item => activeFilter === "All" || item.category === activeFilter);
-      workGrid.innerHTML = "";
-      if (!filtered.length) {
-        workGrid.innerHTML = `<div class="empty-work"><i class="fa-solid fa-folder-open"></i><h3>Projects Coming Soon</h3><p>My educational projects and creative work will be added here.</p></div>`;
-        loadMore.hidden = true; return;
-      }
-      filtered.slice(0, visibleWorks).forEach(item => {
-        const card = document.createElement("article"); card.className = "work-card card";
-        const media = isAvailable(item.media)
-          ? (item.type === "video" ? `<video src="${escapeHTML(item.media)}" autoplay muted loop playsinline></video>` : `<img src="${escapeHTML(item.media)}" loading="lazy" alt="${escapeHTML(item.title)}">`)
-          : `<div class="placeholder"><i class="fa-solid fa-book-open"></i><strong>Project Preview</strong></div>`;
-        card.innerHTML = `<div class="work-media">${media}</div><div class="work-content"><span class="work-category">${escapeHTML(item.category)}</span><h3>${escapeHTML(item.title)}</h3><p>${escapeHTML(item.description)}</p>${isAvailable(item.projectLink) ? `<a class="btn btn-outline project-link" href="${escapeHTML(item.projectLink)}" target="_blank" rel="noopener">View Project</a>` : ""}</div>`;
-        card.addEventListener("click", event => { if (!event.target.closest(".project-link")) openLightbox(item); });
-        workGrid.appendChild(card);
-      });
-      loadMore.hidden = filtered.length <= visibleWorks;
-    }
-    loadMore.addEventListener("click", () => { visibleWorks += 6; renderWorks(); });
-    renderWorks();
 
-    // Accessible project lightbox with Escape-key support.
-    const lightbox = document.getElementById("lightbox");
-    const lightboxContent = document.getElementById("lightboxContent");
-    function openLightbox(item) {
-      const media = isAvailable(item.media)
-        ? (item.type === "video" ? `<video src="${escapeHTML(item.media)}" controls autoplay playsinline></video>` : `<img src="${escapeHTML(item.media)}" alt="${escapeHTML(item.title)}">`)
-        : `<div class="placeholder" style="height:300px"><i class="fa-solid fa-image"></i><strong>Preview not added yet</strong></div>`;
-      lightboxContent.innerHTML = `${media}<h3>${escapeHTML(item.title)}</h3><p>${escapeHTML(item.description)}</p>${isAvailable(item.projectLink) ? `<a class="btn btn-primary lightbox-project" href="${escapeHTML(item.projectLink)}" target="_blank" rel="noopener">View Project</a>` : ""}`;
-      lightbox.classList.add("show"); document.body.style.overflow = "hidden"; document.getElementById("lightboxClose").focus();
-    }
-    function closeLightbox() { lightbox.classList.remove("show"); lightboxContent.innerHTML = ""; document.body.style.overflow = ""; }
-    document.getElementById("lightboxClose").addEventListener("click", closeLightbox);
-    lightbox.addEventListener("click", event => { if (event.target === lightbox) closeLightbox(); });
+    // Process steps.
+    document.getElementById("processGrid").innerHTML = CONFIG.steps.map((step, i) => `
+      <article class="process-card surface reveal delay-${i+1}">
+        <div class="process-number">0${i+1}</div><h3>${esc(step.title)}</h3><p>${esc(step.description)}</p>
+      </article>`).join("");
 
-    // About section: biography, photo, qualifications, tools, and skills.
-    document.getElementById("aboutHeading").textContent = CONFIG.aboutHeading;
-    document.getElementById("aboutDescription").innerHTML = CONFIG.aboutText.map(text => `<p>${escapeHTML(text)}</p>`).join("");
-    const aboutPhoto = document.getElementById("aboutPhoto");
-    aboutPhoto.innerHTML = isAvailable(CONFIG.profilePhoto)
-      ? `<img src="${escapeHTML(CONFIG.profilePhoto)}" alt="${escapeHTML(CONFIG.displayName)}" loading="lazy">`
-      : `<div class="placeholder"><i class="fa-solid fa-user-tie" style="font-size:65px"></i><strong>Profile Photo</strong><small>Your professional photo will appear here</small></div>`;
-    document.getElementById("aboutInfo").innerHTML = `
-      <div class="info-item"><strong>Profession</strong>${escapeHTML(CONFIG.profession)}</div>
-      <div class="info-item"><strong>Experience</strong>${escapeHTML(CONFIG.experience)}</div>
-      <div class="info-item"><strong>Subjects</strong>${escapeHTML(CONFIG.subjects.join(", "))}</div>
-      <div class="info-item"><strong>Classes</strong>${escapeHTML(CONFIG.classes)}</div>
-      ${isAvailable(CONFIG.location) ? `<div class="info-item"><strong>Location</strong>${escapeHTML(CONFIG.location)}</div>` : ""}
-      <div class="info-item"><strong>Institution</strong>${escapeHTML(CONFIG.brand)}</div>`;
-    document.getElementById("aboutInfo").insertAdjacentHTML("afterend", `<div class="chips" style="margin-top:0">${CONFIG.qualifications.map(q => `<span class="chip">${escapeHTML(q)}</span>`).join("")}</div>`);
-    document.getElementById("toolsList").innerHTML = CONFIG.tools.map(tool => `<span class="chip">${escapeHTML(tool)}</span>`).join("");
-    document.getElementById("skillsList").innerHTML = CONFIG.skills.map(skill => `<span class="chip">${escapeHTML(skill)}</span>`).join("");
-    if (isAvailable(CONFIG.resume)) { const resumeButton = document.getElementById("resumeButton"); resumeButton.hidden = false; resumeButton.href = CONFIG.resume; resumeButton.setAttribute("download", ""); }
+    // Pricing plans.
+    document.getElementById("pricingGrid").innerHTML = CONFIG.plans.map((plan, i) => `
+      <article class="price-card surface reveal delay-${i+1} ${plan.popular ? "popular" : ""}">
+        ${plan.popular ? '<span class="popular-badge">POPULAR</span>' : ""}
+        <h3>${esc(plan.name)}</h3><div class="price">${esc(plan.price)}</div>
+        <ul>${plan.features.map(f => `<li><i class="fa-solid fa-check"></i>${esc(f)}</li>`).join("")}</ul>
+        <a class="btn ${plan.popular ? "btn-primary" : "btn-outline"}" href="${esc(plan.link)}">${esc(plan.button)} <i class="fa-solid fa-arrow-right"></i></a>
+      </article>`).join("");
 
-    // Render service cards and work-process cards.
-    document.getElementById("servicesGrid").innerHTML = CONFIG.services.map(service =>
-      `<article class="service-card card"><div class="service-icon"><i class="fa-solid ${escapeHTML(service.icon)}"></i></div><h3>${escapeHTML(service.title)}</h3><p>${escapeHTML(service.description)}</p></article>`
-    ).join("");
-    document.getElementById("processGrid").innerHTML = CONFIG.steps.map(step =>
-      `<article class="process-card card"><div class="step-number">${escapeHTML(step.number)}</div><h3>${escapeHTML(step.title)}</h3><p>${escapeHTML(step.description)}</p></article>`
-    ).join("");
-
-    // Pricing cards.
-    document.getElementById("pricingHeading").textContent = CONFIG.pricingHeading;
-    document.getElementById("pricingGrid").innerHTML = CONFIG.plans.map(plan =>
-      `<article class="price-card card ${plan.popular ? "popular" : ""}">${plan.popular ? '<span class="popular-label">POPULAR</span>' : ""}<h3>${escapeHTML(plan.name)}</h3><div class="price">${escapeHTML(plan.price)}</div><ul>${plan.features.map(feature => `<li><i class="fa-solid fa-check"></i>${escapeHTML(feature)}</li>`).join("")}</ul><a class="btn btn-outline" href="${escapeHTML(plan.link)}">${escapeHTML(plan.button)}</a></article>`
-    ).join("");
-
-    // Display testimonials only when real reviews are added.
-    if (CONFIG.testimonials.length) {
+    // Testimonials only appear when genuine reviews are entered.
+    if (CONFIG.testimonials && CONFIG.testimonials.length) {
       document.getElementById("testimonials").hidden = false;
-      document.getElementById("testimonialsGrid").innerHTML = CONFIG.testimonials.map(review =>
-        `<article class="testimonial card"><p>“${escapeHTML(review.text)}”</p><h4>${escapeHTML(review.name)}</h4><small>${escapeHTML(review.role)}</small></article>`
-      ).join("");
+      document.getElementById("testimonialsGrid").innerHTML = CONFIG.testimonials.map((review, i) => `
+        <article class="testimonial-card surface reveal">
+          <div class="stars">★★★★★</div><blockquote>“${esc(review.text)}”</blockquote>
+          <div class="review-person"><span class="review-avatar">${esc((review.name || "S").split(" ").map(x => x[0]).join("").slice(0,2))}</span>
+            <div><strong>${esc(review.name)}</strong><small>${esc(review.role || "Student / Parent")}</small></div>
+          </div>
+        </article>`).join("");
     }
 
-    // FAQ accordion: only one answer can remain open at a time.
+    // FAQ accordion: one item open at a time.
     const faqList = document.getElementById("faqList");
     CONFIG.faqs.forEach(faq => {
-      const item = document.createElement("div"); item.className = "faq-item";
-      item.innerHTML = `<button class="faq-question" aria-expanded="false"><span>${escapeHTML(faq.question)}</span><i class="fa-solid fa-plus"></i></button><div class="faq-answer"><div><p>${escapeHTML(faq.answer)}</p></div></div>`;
-      const button = item.querySelector(".faq-question");
+      const item = document.createElement("div");
+      item.className = "faq-item reveal";
+      item.innerHTML = `<button class="faq-question" aria-expanded="false"><span>${esc(faq.question)}</span><span class="faq-plus"><i class="fa-solid fa-plus"></i></span></button><div class="faq-answer"><div><p>${esc(faq.answer)}</p></div></div>`;
+      const button = item.querySelector("button");
       button.addEventListener("click", () => {
         const wasOpen = item.classList.contains("open");
-        faqList.querySelectorAll(".faq-item").forEach(other => { other.classList.remove("open"); other.querySelector(".faq-question").setAttribute("aria-expanded", "false"); });
-        if (!wasOpen) { item.classList.add("open"); button.setAttribute("aria-expanded", "true"); }
+        faqList.querySelectorAll(".faq-item").forEach(other => {
+          other.classList.remove("open");
+          other.querySelector("button").setAttribute("aria-expanded","false");
+        });
+        if (!wasOpen) { item.classList.add("open"); button.setAttribute("aria-expanded","true"); }
       });
       faqList.appendChild(item);
     });
 
-    // Contact section details.
-    document.getElementById("formTitle").textContent = CONFIG.formTitle;
-    document.getElementById("formText").textContent = CONFIG.formText;
-    document.getElementById("contactInfo").innerHTML = `
-      <a href="mailto:${escapeHTML(CONFIG.email)}" class="contact-item card"><i class="fa-solid fa-envelope"></i><div><small>Email Address</small><strong>${escapeHTML(CONFIG.email)}</strong></div></a>
-      <a href="tel:${escapeHTML(CONFIG.phone)}" class="contact-item card"><i class="fa-solid fa-phone"></i><div><small>Phone Number</small><strong>${escapeHTML(CONFIG.phone)}</strong></div></a>
-      <a href="${escapeHTML(CONFIG.whatsapp)}" target="_blank" rel="noopener" class="contact-item card"><i class="fa-brands fa-whatsapp"></i><div><small>WhatsApp</small><strong>Chat With Me</strong></div></a>
-      ${isAvailable(CONFIG.location) ? `<div class="contact-item card"><i class="fa-solid fa-location-dot"></i><div><small>Location</small><strong>${escapeHTML(CONFIG.location)}</strong></div></div>` : ""}`;
-
-    // Build form fields from CONFIG.
-    const formInputs = document.getElementById("formInputs");
-    CONFIG.formFields.forEach((field, index) => {
-      const wrapper = document.createElement("div"); wrapper.className = "form-group";
-      const id = "contactField" + index;
-      const type = field.toLowerCase().includes("email") ? "email" : "text";
-      const required = index === 0 || type === "email";
-      wrapper.innerHTML = `<label for="${id}">${escapeHTML(field)}</label><input class="form-control" id="${id}" name="${escapeHTML(field)}" type="${type}" placeholder="Enter ${escapeHTML(field.toLowerCase())}" ${required ? "required" : ""}>`;
-      formInputs.appendChild(wrapper);
+    // Contact details and form.
+    document.getElementById("contactTitle").textContent = CONFIG.contactTitle;
+    document.getElementById("contactText").textContent = CONFIG.contactText;
+    document.getElementById("contactDetails").innerHTML = `
+      <a class="contact-item surface" href="mailto:${esc(CONFIG.email)}"><i class="fa-solid fa-envelope"></i><div><small>Email</small><strong>${esc(CONFIG.email)}</strong></div></a>
+      <a class="contact-item surface" href="tel:${esc(CONFIG.phone)}"><i class="fa-solid fa-phone"></i><div><small>Phone</small><strong>${esc(CONFIG.phone)}</strong></div></a>
+      <a class="contact-item surface" href="${esc(CONFIG.whatsapp)}" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i><div><small>WhatsApp</small><strong>Chat with Shahid Sir</strong></div></a>
+      <div class="contact-item surface"><i class="fa-solid fa-location-dot"></i><div><small>Location</small><strong>${esc(CONFIG.location)}</strong></div></div>`;
+    const enquiryType = document.getElementById("enquiryType");
+    CONFIG.enquiryOptions.forEach(option => {
+      const el = document.createElement("option"); el.value = option; el.textContent = option; enquiryType.appendChild(el);
     });
-    const serviceSelect = document.getElementById("serviceSelect");
-    CONFIG.formOptions.forEach(option => { const el = document.createElement("option"); el.value = option; el.textContent = option; serviceSelect.appendChild(el); });
-    document.getElementById("formSubmit").innerHTML = `${escapeHTML(CONFIG.formButton)} <i class="fa-solid fa-arrow-right"></i>`;
 
-    // Mailto form: opens the visitor's email app; it does not send automatically.
-    const contactForm = document.getElementById("contactForm");
-    const submitButton = document.getElementById("formSubmit");
-    contactForm.addEventListener("submit", event => {
+    const toast = document.getElementById("toast");
+    let toastTimer;
+    function showToast(message) {
+      toast.textContent = message; toast.classList.add("show");
+      clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove("show"), 3600);
+    }
+    document.getElementById("contactForm").addEventListener("submit", event => {
       event.preventDefault();
-      if (submitButton.disabled) return;
-      submitButton.disabled = true;
-      submitButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Preparing...';
-      const details = [];
-      CONFIG.formFields.forEach((field, index) => {
-        const value = document.getElementById("contactField" + index).value.trim();
-        if (value) details.push(field + ": " + value);
+      const form = event.currentTarget;
+      const data = new FormData(form);
+      const lines = [];
+      ["Full Name","WhatsApp Number","Email Address","Address"].forEach(key => {
+        const value = form.querySelector(`[name="${key}"]`)?.value?.trim();
+        if (value) lines.push(`${key}: ${value}`);
       });
-      details.push("Service: " + serviceSelect.value);
+      lines.push(`Enquiry: ${enquiryType.value}`);
       const message = document.getElementById("message").value.trim();
-      if (message) details.push("Message: " + message);
-      const subject = encodeURIComponent("Portfolio Enquiry - " + CONFIG.displayName);
-      const body = encodeURIComponent("Hello " + CONFIG.displayName + ",\n\nI am contacting you through your portfolio website.\n\n" + details.join("\n") + "\n\nThank you.");
+      if (message) lines.push(`Message: ${message}`);
+      const subject = encodeURIComponent("Portfolio enquiry — " + CONFIG.displayName);
+      const body = encodeURIComponent("Hello " + CONFIG.displayName + ",\n\nI am contacting you through your portfolio website.\n\n" + lines.join("\n") + "\n\nThank you.");
       if (CONFIG.formMethod === "mailto") {
-        window.location.href = "mailto:" + CONFIG.email + "?subject=" + subject + "&body=" + body;
-        document.getElementById("popupTitle").textContent = CONFIG.popupTitle;
-        document.getElementById("popupMessage").textContent = CONFIG.popupMessage;
-        document.getElementById("successPopup").classList.add("show");
-        contactForm.reset();
+        window.location.href = `mailto:${CONFIG.email}?subject=${subject}&body=${body}`;
+        showToast("Your email app is opening. Please send the prepared enquiry.");
+        form.reset();
       }
-      submitButton.disabled = false;
-      submitButton.innerHTML = `${escapeHTML(CONFIG.formButton)} <i class="fa-solid fa-arrow-right"></i>`;
     });
 
-    // Close the confirmation popup.
-    function closePopup() { document.getElementById("successPopup").classList.remove("show"); }
-    document.getElementById("popupClose").addEventListener("click", closePopup);
-    document.getElementById("successPopup").addEventListener("click", event => { if (event.target.id === "successPopup") closePopup(); });
-
-    // Render only social links that have been supplied.
-    const socialConfig = [
-      { key: "youtube", icon: "fa-youtube", label: "YouTube" }, { key: "instagram", icon: "fa-instagram", label: "Instagram" },
-      { key: "facebook", icon: "fa-facebook-f", label: "Facebook" }, { key: "linkedin", icon: "fa-linkedin-in", label: "LinkedIn" },
-      { key: "twitter", icon: "fa-x-twitter", label: "Twitter" }, { key: "pinterest", icon: "fa-pinterest-p", label: "Pinterest" },
-      { key: "behance", icon: "fa-behance", label: "Behance" }, { key: "dribbble", icon: "fa-dribbble", label: "Dribbble" }
+    // Social links; empty networks are automatically hidden.
+    const socialMeta = [
+      ["instagram","fa-instagram","Instagram"],["youtube","fa-youtube","YouTube"],
+      ["facebook","fa-facebook-f","Facebook"],["linkedin","fa-linkedin-in","LinkedIn"],
+      ["twitter","fa-x-twitter","X"]
     ];
-    const socialLinks = document.getElementById("socialLinks");
-    socialConfig.forEach(item => {
-      const url = CONFIG.social[item.key];
-      if (isAvailable(url)) {
-        const link = document.createElement("a"); link.href = url; link.target = "_blank"; link.rel = "noopener";
-        link.setAttribute("aria-label", item.label); link.innerHTML = `<i class="fa-brands ${item.icon}"></i>`; socialLinks.appendChild(link);
-      }
-    });
+    document.getElementById("socials").innerHTML = socialMeta
+      .filter(([key]) => available(CONFIG.social[key]))
+      .map(([key, icon, label]) => `<a href="${esc(CONFIG.social[key])}" target="_blank" rel="noopener" aria-label="${label}"><i class="fa-brands ${icon}"></i></a>`).join("");
 
-    // Footer content and current year.
     document.getElementById("footerTagline").textContent = CONFIG.tagline;
     document.getElementById("copyright").textContent = `© ${new Date().getFullYear()} ${CONFIG.name}. All rights reserved.`;
 
-    // Escape closes the lightbox and popup.
-    document.addEventListener("keydown", event => { if (event.key === "Escape") { closeLightbox(); closePopup(); } });
+    // Project modal close behaviour.
+    function closeModal() {
+      projectModal.classList.remove("show");
+      modalContent.innerHTML = "";
+      document.body.style.overflow = "";
+    }
+    document.getElementById("modalClose").addEventListener("click", closeModal);
+    projectModal.addEventListener("click", e => { if (e.target === projectModal) closeModal(); });
+    document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+
+    // Scroll reveal animation using IntersectionObserver.
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+
+    // Back-to-top button and active navigation link.
+    const backTop = document.getElementById("backTop");
+    window.addEventListener("scroll", () => {
+      backTop.classList.toggle("show", window.scrollY > 600);
+      let current = "home";
+      document.querySelectorAll("main section[id]").forEach(section => {
+        if (window.scrollY >= section.offsetTop - 160) current = section.id;
+      });
+      navLinks.querySelectorAll("a").forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + current));
+    }, { passive: true });
+    backTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
   </script>
 </body>
 </html>
